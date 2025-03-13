@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+@plugin 'tailwind-scrollbar';
+
+@theme {
+  --font-jost: 'Jost', sans-serif;
+}
+
+::-webkit-scrollbar-thumb { 
+  border-radius: 6px;  /* Aquí redondeamos los bordes */
+}
+
+.scrollable-menu::-webkit-scrollbar {
+  width: 2px; /* Ajusta el ancho del scrollbar */
+}
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply bg-gray-900;
+  color: white;
+}
+
+.slick-dots li.slick-active button:before {
+  color: rgb(87, 124, 165) !important;
+  scale: 2;
+}
+
+.slick-dots li button:before {
+  color: #e9e1e1 !important;
+}
+
+
+/* the parent */
+#manga-slider .slick-list {
+  padding-left: 145px !important;
+}
+
+#manga-slider .slick-prev::before,
+#manga-slider .slick-next::before {
+  display: none;
+
+}
+
+#carousel-slider .slick-prev::before,
+#carousel-slider .slick-next::before {
+  display: none;
+}
+
+
+/* .fade {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+} */
