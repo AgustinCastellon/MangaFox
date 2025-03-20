@@ -1,119 +1,64 @@
+import { faChevronLeft, faChevronRight, faExpand, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faChevronRight, faPlay, faPlus, faClose, faBars } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import PropTypes from 'prop-types';
 
-const ChapterMenu = ({ chapters, randomManga, selectedPage, handleSelectChange, handleNextPage, handlePrevPage, setCurrentChapter }) => {
-    const [activeMenu, setActiveMenu] = useState(true);
-
-    const handleCloseMenu = () => {
-        setActiveMenu(false);
-    };
-
-    const handleActiveMenu = () => {
-        setActiveMenu(true);
-    };
-    if (!chapters || !randomManga) {
-        return <div>Loading...</div>;
-    }
-    return (
-        <div className="relative z-99">
-            <FontAwesomeIcon onClick={handleActiveMenu} icon={faBars} className={`${activeMenu ? 'invisible' : 'visible'} -top-42 absolute left-225 z-3 text-xl rounded-lg px-2 py-1 hover:bg-slate-500 cursor-pointer`} />
-            <div className={`${activeMenu ? 'visible' : 'invisible'} z-2 -top-43 absolute left-139 w-95 bg-slate-600 rounded-lg`}>
-                <FontAwesomeIcon onClick={handleCloseMenu} icon={faClose} className="ml-4 text-2xl my-2 cursor-pointer hover:bg-zinc-600 rounded-full px-2 py-1" />
-                <div className="scrollbar overflow-y-scroll h-[805px] mb-3 scrollable-menu">
-                    {/* Navegación de Páginas */}
-                    <div className="flex flex-col px-4 pt-2">
-                        <div className="flex justify-between">
-                            <button
-                                onClick={handlePrevPage}
-                                disabled={selectedPage === 0}
-                                className={`${selectedPage === 0 ? 'bg-zinc-600 hover:cursor-auto' : 'bg-slate-500'}  px-3 py-0.5 text-2xl rounded-l-lg cursor-pointer`}
-                            >
-                                <FontAwesomeIcon icon={faChevronLeft} />
-                            </button>
-                            <select
-                                className="bg-slate-700 flex-grow mx-2"
-                                value={selectedPage}
-                                onChange={handleSelectChange}
-                            >
-                                {chapters?.map((_, index) => (
-                                    <option key={index} value={index}>
-                                        Página {index + 1}
-                                    </option>
-                                ))}
-                            </select>
-                            <button
-                                onClick={handleNextPage}
-                                disabled={selectedPage === chapters.length - 1}
-                                className={`${selectedPage === chapters.length - 1 ? 'bg-zinc-600 hover:cursor-auto' : 'bg-slate-500'} px-3 text-2xl rounded-r-lg cursor-pointer`}
-                            >
-                                <FontAwesomeIcon icon={faChevronRight} />
-                            </button>
-                        </div>
-
-                        {/* Entrada para seleccionar capítulo */}
-                        <div className="flex justify-between gap-2 mt-2">
-                            <input type="number" placeholder="Chapter..." className="bg-slate-700 flex-grow rounded-l-lg p-1" />
-                            <select name="" className="bg-slate-700 w-25 rounded-r-lg">
-                                <option value="">1-10</option>
-                            </select>
-                        </div>
+function ChapterMenu ({chapters, currentChapter, zoom, setZoom, isFullScreen, handleNextChapter, handlePrevChapter, numberChapter, toggleFullScreen}) {
+    
+    return(
+        <div className={`${isFullScreen ? 'hidden' : 'flex'} bottom-0 z-9 p-5 fixed justify-between items-center w-[1090px] opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all delay-100 duration-500 ease-in-out`}>
+                    <div className=" text-sm font-semibold bottom-6 text-zinc-300">
+                        <button onClick={() => setZoom(zoom - 20)} disabled={zoom === 20} className="px-3 py-2 border-y-1 border-l-1 rounded-l-lg border-zinc-800 bg-zinc-900 hover:bg-zinc-700 cursor-pointer">
+                            <FontAwesomeIcon icon={faMinus} />
+                        </button>
+                        <span className="px-2 py-2 border-y-1 border-zinc-800 bg-zinc-900 select-none backdrop-blur-xl">{zoom}%</span>
+                        <button onClick={() => setZoom(zoom + 20)} disabled={zoom === 100} className="px-3 py-2 border-y-1 border-r-1 rounded-r-lg border-zinc-800 bg-zinc-900 hover:bg-zinc-700 cursor-pointer">
+                            <FontAwesomeIcon icon={faPlus} />
+                        </button>
                     </div>
-
-                    {/* Lista de Capítulos */}
-                    <div className="text-sm mt-7 mb-2 border-b-1 border-slate-500 pb-4 mx-3">
-                        <ul>
-                            {chapters?.map((chapter, index) => (
-                                <li
-                                    onClick={() => setCurrentChapter(chapter?.id)}
-                                    key={index}
-                                    className="bg-slate-700 mb-2 p-2 rounded-lg hover:bg-slate-500 cursor-pointer"
-                                >
-                                    Cap {chapter?.attributes?.chapter} - {chapter?.attributes?.title}
-                                </li>
-                            ))}
-                        </ul>
+                    <div className="text-sm font-semibold bottom-6 text-zinc-300">
+                        <button
+                            className="px-3 py-2 border-y-1 border-l-1 rounded-l-lg border-zinc-700 bg-zinc-800 hover:bg-zinc-700 cursor-pointer"
+                            onClick={handlePrevChapter}
+                            disabled={chapters.findIndex(ch => ch.id === currentChapter) === 0}
+                        >
+                            <FontAwesomeIcon icon={faChevronLeft} />
+                        </button>
+                        <span className="px-4 py-2 border-y-1 border-zinc-700 bg-zinc-800 select-none">Chapter {numberChapter}</span>
+                        <button
+                            className=" px-3 py-2 border-y-1 border-r-1 rounded-r-lg border-zinc-700 bg-zinc-800 hover:bg-zinc-700 cursor-pointer"
+                            onClick={handleNextChapter}
+                            disabled={chapters.findIndex(ch => ch.id === currentChapter) === chapters.length - 1}
+                        >
+                            <FontAwesomeIcon icon={faChevronRight} />
+                        </button>
                     </div>
-
-                    {/* Manga Sugerido */}
-                    <div className="mx-3">
-                        <h1 className="text-xl font-bold mb-2">Suggested for you</h1>
-                        <div className="flex">
-                            <div>
-                                <img
-                                    src={randomManga?.coverUrl}
-                                    alt={randomManga?.coverUrl}
-                                    className="h-50 w-35 rounded-lg object-fill"
-                                />
-                            </div>
-                            <div className="flex flex-col justify-between pl-2">
-                                <div>
-                                    <div>
-                                        <h1 className="text-slate-400">Status</h1>
-                                        <h3>{randomManga?.manga?.attributes?.status.toUpperCase()}</h3>
-                                    </div>
-                                    <div>
-                                        <h1 className="text-slate-400">Content Rating </h1>
-                                        <h3>{randomManga?.manga?.attributes?.contentRating}</h3>
-                                    </div>
-                                </div>
-                                <div>
-                                    <button className="bg-slate-700 font-bold text-sm rounded-lg w-35 p-1 hover:bg-slate-500 cursor-pointer">
-                                        <FontAwesomeIcon icon={faPlay} /> Watch Now
-                                    </button>
-                                    <button className="bg-slate-700 font-bold text-sm p-1 rounded-full w-8 ml-5 hover:bg-slate-500 cursor-pointer">
-                                        <FontAwesomeIcon icon={faPlus} />
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <h1 className="text-lg font-bold mt-1">{randomManga?.manga?.attributes?.title?.en}</h1>
-                        <p className="bg-slate-700 px-2 py-1 rounded-lg text-xs text-gray-300">{randomManga?.manga?.attributes?.description?.en}</p>
+                    <div className="text-sm font-semibold bottom-6 text-zinc-300 ">
+                        <button
+                            className="px-3 py-2 border-1 rounded-lg border-zinc-700  hover:bg-zinc-800 bg-zinc-900 cursor-pointer"
+                            onClick={toggleFullScreen}
+                        >
+                            <FontAwesomeIcon icon={faExpand} className="text-sm transition duration-300 ease-in-out hover:scale-120" />
+                        </button>
                     </div>
                 </div>
-            </div>
-        </div>
-    );
+    )
+}
+
+ChapterMenu.propTypes = {
+    chapters: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired, 
+            title: PropTypes.string 
+        })
+    ).isRequired,
+    currentChapter: PropTypes.string.isRequired, 
+    zoom: PropTypes.number.isRequired,
+    setZoom: PropTypes.func.isRequired,
+    isFullScreen: PropTypes.bool.isRequired,
+    handleNextChapter: PropTypes.func.isRequired,
+    handlePrevChapter: PropTypes.func.isRequired,
+    numberChapter: PropTypes.number.isRequired,
+    toggleFullScreen: PropTypes.func.isRequired
 };
 
 export default ChapterMenu;

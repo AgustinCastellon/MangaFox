@@ -10,6 +10,10 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/es";
 import { getAllCovers } from "../Services/MangaDex/CoverService";
+import ChooseChapterModal from "../Components/modals/ChooseChapterModal";
+import { AnimatePresence } from "framer-motion";
+import CoverDetailLoader from "../Components/skeletonLoader/ProfilePictureMangaLoader";
+import CoverProfileLoader from "../Components/skeletonLoader/CoverProfileLoader";
 
 dayjs.extend(relativeTime);
 dayjs.locale("es");
@@ -50,7 +54,8 @@ function MangaDetail() {
     const mangasPerPage = 10;
     const [currentPage, setCurrentPage] = useState(1);
     const [activeModal, setActiveModal] = useState("chapter");
-    const [allCovers, setAllCovers] = useState([])
+    const [allCovers, setAllCovers] = useState([]);
+    const [modalFirstChapter, setModalFirstChapter] = useState(false);
 
     useEffect(() => {
         if (!id) return; // Evitamos llamar a la API si no hay id
@@ -87,18 +92,34 @@ function MangaDetail() {
 
     return (
         <div className='w-[1200px]  mx-auto px-4 relative'>
-            <div style={{ backgroundImage: `url(${manga?.coverUrl})` }} className="h-100 bg-cover brightness-80  border-2 border-white"></div>
+            {modalFirstChapter && (
+                <AnimatePresence>
+                    <ChooseChapterModal
+                        mangaId={id}
+                        setModalOpen={setModalFirstChapter} // Pasa la función setModalOpen
+                    />
+                </AnimatePresence>
+            )}
+            {!manga?.coverUrl ? (
+                <CoverProfileLoader />
+            ) : (
+                <div style={{ backgroundImage: `url(${manga?.coverUrl})` }} className="h-100 bg-cover brightness-80 rounded-xl border-2 border-white" />
+            )}
             <div className="flex ml-10">
                 <div className="absolute top-82">
-                    <img src={`${manga?.coverUrl}.256.jpg`} alt={manga?.coverUrl} className="h-64 w-46 rounded-xl object-cover outline-4 outline-offset-0 outline-slate-700 outline-solid " />
+                    {!manga?.coverUrl ? (
+                        <CoverDetailLoader />
+                    ) : (
+                        <img src={`${manga?.coverUrl}.256.jpg`} alt={manga?.coverUrl} className="h-64 w-46 rounded-xl object-cover outline-4 outline-offset-0 outline-slate-700 outline-solid " />
+                    )}
                 </div>
                 <div className="absolute left-65 mt-2 h-45 flex flex-col justify-between">
                     <h1 className="font-bold text-3xl line-clamp-2">{manga?.attributes?.title?.en}</h1>
-                    <h2 className="text-sm font-medium"><FontAwesomeIcon icon={faCircle} className="text-green-400 text-[9px]" /> Publication: {manga?.attributes?.year}, {manga?.attributes?.status}</h2>
+                    <h2 className="text-sm font-medium"><FontAwesomeIcon icon={faCircle} className="text-green-400 text-[9px]" /> Publicacion: {manga?.attributes?.year}, {manga?.attributes?.status}</h2>
                     <h5 className="text-sm">
-                        <FontAwesomeIcon icon={faStar} className="text-yellow-400 pr-1" />{statistics?.rating?.average.toFixed(2)}
+                        <FontAwesomeIcon icon={faStar} className="text-yellow-400 pr-1" />{statistics?.rating?.average?.toFixed(2) || "-"}
                         <FontAwesomeIcon icon={faBookmark} className="pl-3 pr-1" />{statistics?.follows}
-                        <FontAwesomeIcon icon={faComment} className="pl-3 pr-1" />{statistics?.comments.repliesCount}
+                        <FontAwesomeIcon icon={faComment} className="pl-3 pr-1" />{statistics?.comments?.repliesCount}
                     </h5>
                     <div className="flex gap-1 flex-wrap pr-1">
                         {manga?.content?.map((f, index) => (
@@ -112,12 +133,12 @@ function MangaDetail() {
 
                     </div>
                     <div className="flex gap-2">
-                        <button className="bg-slate-700 font-bold px-4 py-2 rounded-lg text-lg hover:bg-slate-600 cursor-pointer"><FontAwesomeIcon icon={faBookOpen} className="pr-2" />Start Reading</button>
-                        <button className="bg-slate-700 font-bold px-4 py-2 rounded-lg text-lg hover:bg-slate-600 cursor-pointer"><FontAwesomeIcon icon={faList} className="pr-2" />Add To List</button>
+                        <button onClick={() => setModalFirstChapter(true)} className="bg-slate-700 font-bold px-4 py-2 rounded-lg text-lg hover:bg-slate-600 cursor-pointer"><FontAwesomeIcon icon={faBookOpen} className="pr-2" />Leer Ahora</button>
+                        <button className="bg-slate-700 font-bold px-4 py-2 rounded-lg text-lg hover:bg-slate-600 cursor-pointer"><FontAwesomeIcon icon={faList} className="pr-2" />Agregar a la lista</button>
                     </div>
                 </div>
             </div>
-            <p className="mt-54 px-10 text-gray-300 text-left text-sm">{manga?.attributes?.description?.es || manga?.attributes?.description?.en }</p>
+            <p className="mt-54 px-10 text-gray-300 text-left text-sm">{manga?.attributes?.description?.es || manga?.attributes?.description?.en}</p>
             <div>
                 <header className="my-5">
                     <nav>
@@ -127,7 +148,7 @@ function MangaDetail() {
                                     onClick={() => handleClickModal("chapter")}
                                     className={`${activeModal === 'chapter' ? 'text-white bg-slate-700 border-slate-500' : 'text-gray-400'} border-slate-500 rounded-l-lg cursor-pointer border-1 px-5`}
                                 >
-                                    Chapters
+                                    Capitulos
                                 </button>
                             </li>
                             <li>
@@ -135,7 +156,7 @@ function MangaDetail() {
                                     onClick={() => handleClickModal("detail")}
                                     className={`${activeModal === 'detail' ? 'text-white bg-slate-700 border-slate-500' : 'text-gray-400'} border-slate-500 cursor-pointer border-1 px-5`}
                                 >
-                                    Details
+                                    Detalle
                                 </button>
                             </li>
                             <li>
@@ -143,7 +164,7 @@ function MangaDetail() {
                                     onClick={() => handleClickModal("art")}
                                     className={`${activeModal === 'art' ? 'text-white bg-slate-700 border-slate-500' : 'text-gray-400'} border-slate-500 rounded-r-lg cursor-pointer border-1 px-5`}
                                 >
-                                    Art
+                                    Arte
                                 </button>
                             </li>
                         </ul>

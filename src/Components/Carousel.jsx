@@ -2,9 +2,12 @@ import { faPlay, faPlus, faChevronLeft, faChevronRight } from '@fortawesome/free
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Slider from "react-slick";
 import PropTypes from "prop-types";
-
+import {useState} from 'react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { AnimatePresence } from 'framer-motion';
+import ChooseChapterModal from './modals/ChooseChapterModal';
+import { data } from 'react-router-dom';
 
 const SamplePrevArrow = (props) => {
     const { className, onClick } = props;
@@ -48,13 +51,31 @@ var settings = {
 };
 
 
-function carousel({ mangas = [] }) {
+function Carousel({ mangas = [] }) {
+
+    const [modalFirstChapter, setModalFirstChapter] = useState(false);
+    const [mangaId, setMangaId] = useState(null);
+
+    const handleModal = (id)=>{
+        setModalFirstChapter(true);
+        setMangaId(id);
+        console.log(mangaId)
+    }
+
     return (
 
         <div className='w-[900px] m-auto' id="carousel-slider">
+            {modalFirstChapter && (
+                <AnimatePresence>
+                    <ChooseChapterModal 
+                        mangaId={mangaId} 
+                        setModalOpen={setModalFirstChapter} // Pasa la función setModalOpen
+                    />
+                </AnimatePresence>
+            )}
             <Slider {...settings} >
                 {mangas?.map((d, index) => (
-                    <div key={index} className='block bg-linear-to-r/srgb from-slate-700 to-gray-900 backdrop-opacity-10 backdrop-blur-sm'>
+                    <div key={index}  className='block bg-linear-to-r/srgb from-slate-800 to-gray-900'>
                         <div className='flex '>
                             <div className='w-1/4 flex-shrink-0' >
                                 <img src={`${d.coverUrl}.512.jpg`} alt={d.title || "Manga Fox"} className='rounded-lg w-50 h-[300px] object-cover' />
@@ -77,8 +98,8 @@ function carousel({ mangas = [] }) {
                                     {d.description ? d.description : "Not description..."}
                                 </p>
                                 <div className='text-end pb-1'>
-                                    <button className='bg-slate-700 font-bold text-lg rounded-lg w-40 p-1 hover:bg-slate-600 cursor-pointer'>
-                                        <FontAwesomeIcon icon={faPlay} /> Watch Now
+                                    <button onClick={()=> handleModal(d?.id)} className='bg-slate-700 font-bold text-lg rounded-lg w-40 p-1 hover:bg-slate-600 cursor-pointer'>
+                                        <FontAwesomeIcon icon={faPlay} /> Leer Ahora
                                     </button>
                                     <button className='bg-slate-700 font-bold text-lg p-1 rounded-full w-9 ml-6 hover:bg-slate-600 cursor-pointer'>
                                         <FontAwesomeIcon icon={faPlus} />
@@ -94,4 +115,4 @@ function carousel({ mangas = [] }) {
     )
 };
 
-export default carousel;
+export default Carousel;

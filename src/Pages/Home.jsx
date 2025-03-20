@@ -52,22 +52,22 @@ function Home() {
 
     return (
         <div className='w-[1200px]  mx-auto px-4'>
-            <h1 className='font-medium mb-3 text-3xl'>Popular New Titles</h1>
+            <h1 className='font-medium mb-3 text-3xl'>Nuevo Titulos Populares</h1>
             <Carousel mangas={mangas} />
             <div className="flex items-center justify-between mt-15 mb-4">
-                <h1 className='font-medium text-3xl'>Latest Updates</h1>
+                <h1 className='font-medium text-3xl'>Ultimas Actualizaciones</h1>
                 <FontAwesomeIcon icon={faArrowRight} className="text-2xl" />
             </div>
             <LatestUpdatesCard chapters={chapters} />
             <div className="flex items-center justify-between mt-15 mb-4">
-                <h1 className='font-medium text-3xl'>Top Rated</h1>
+                <h1 className='font-medium text-3xl'>Mejor Puntuados</h1>
                 <Link to='/mangas?filter=Top-Rated'>
                     <FontAwesomeIcon icon={faArrowRight} className="text-2xl" />
                 </Link>
             </div>
             <MangaListSlider topMangas={topMangas} />
             <div className="flex items-center justify-between  mb-4">
-                <h1 className='font-medium text-3xl'>Latest Releases</h1>
+                <h1 className='font-medium text-3xl'>Ultimos Lanzamientos</h1>
                 <Link to='/mangas?filter=Latest Releases'>
                     <FontAwesomeIcon icon={faArrowRight} className="text-2xl" />
                 </Link>

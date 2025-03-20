@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { getCoverUrl } from './CoverService';
-
+import { getMangaStatistics } from './StatisticsService'
 const BASE_URL = 'https://api.mangadex.org';
 
 /**
@@ -165,7 +165,7 @@ export const getMangasTopRated = async (limit, offset = 0) => {
     }
 }
 
-export const getCapitulosManga = async (id, lang, limit=500, offset = 0) => {
+export const getCapitulosManga = async (id, lang, limit = 500, offset = 0) => {
     const response = await axios.get(`${BASE_URL}/manga/${id}/feed`, {
         params: {
             "order[chapter]": "asc",
@@ -181,16 +181,83 @@ export const getCapitulosManga = async (id, lang, limit=500, offset = 0) => {
     }
 }
 
-export const getRandomManga = async ()=>{
-    const response = await axios.get(`${BASE_URL}/manga/random`,{
+export const getFirstChapterEachLanguage = async (id) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/manga/${id}/feed`, {
+            params: {
+                "order[chapter]": "asc",
+                "includeExternalUrl": 0,
+                "includes[]": ["user", "scanlation_group"]
+            }
+        })
+
+        const chapters = response.data.data || [];
+
+        // Filtrar el primer capítulo para cada idioma
+        const firstChaptersByLanguage = {};
+
+        chapters.forEach((chapter) => {
+            const langCode = chapter.attributes.translatedLanguage;
+
+            // Solo guardamos el primer capítulo por idioma
+            if (!firstChaptersByLanguage[langCode]) {
+                firstChaptersByLanguage[langCode] = chapter;
+            }
+        });
+
+        // Convertir el objeto a un array de capítulos por idioma
+        return Object.values(firstChaptersByLanguage);
+    } catch (error) {
+        console.error('Error obteniendo primer capítulo por idioma:', error);
+        return null;
+    }
+}
+
+export const getRandomManga = async () => {
+    const response = await axios.get(`${BASE_URL}/manga/random`, {
         params: {
             "includes[]": "cover_art",
         }
     })
     const cover = response.data.data.relationships.find(f => f.type === "cover_art").attributes.fileName;
     const mangaId = response.data.data.id;
-    return{
+    return {
         manga: response.data.data,
         coverUrl: cover ? getCoverUrl(mangaId, cover) : null
+    }
+}
+
+export const findMangaByTitle = async (title) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/manga`, {
+            params: {
+                title: title,
+                "includes[]": "cover_art",
+            }
+        })
+
+        const mangas = response.data.data;
+
+        // Obtener estadísticas en paralelo
+        const statsPromises = mangas.map(manga => getMangaStatistics(manga.id));
+        const statsResults = await Promise.all(statsPromises);
+
+        return mangas.map((manga, index) => {
+            const cover = manga.relationships.find(rel => rel.type === "cover_art");
+            return {
+                id: manga.id,
+                title: manga.attributes.title.en || Object.values(manga.attributes.title)[0],
+                description: manga.attributes.description["es-la"] || Object.values(manga.attributes.description)[0],
+                status: manga.attributes.status,
+                year: manga.attributes.year || "-",
+                coverUrl: cover ? getCoverUrl(manga.id, cover.attributes.fileName) : null,
+                rating: statsResults[index].rating.average || 0,
+                followers: statsResults[index].follows || null,
+                comments: statsResults[index].comments
+            };
+        });
+    } catch (error) {
+        console.error('Error obteniendo mangas populares:', error);
+        return [];
     }
 }

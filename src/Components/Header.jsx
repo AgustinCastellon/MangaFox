@@ -1,8 +1,11 @@
-import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faMoon, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom';
 
+import MangaSearch from './MangaSearch';
 function Header() {
+
+
     return (
         <div className='relative mb-50'>
             <div className="absolute top-0 left-0 right-0 bottom-0 h-60 z-1 bg-linear-to-t from-gray-900 to-transparent"></div>
@@ -14,19 +17,18 @@ function Header() {
                         <h1 className='text-4xl font-bold'>MangaFox</h1>
                     </div>
                 </Link>
-                <div className="flex basis-128 bg-gray-900  content-center w-120 rounded-2xl text-lg border border-gray-400 hover:border-white hover:border-2 hover:text-white">
-                    <input
-                        type="text"
-                        placeholder="Search Manga..."
-                        className="outline-none pl-4 grow placeholder-white"
-                    />
-                    <button className="pr-4">
-                        <FontAwesomeIcon icon={faSearch} />
-                    </button>
+                <div className="flex basis-128">
+                    <MangaSearch/>
                 </div>
-                <div className='flex basis-64 justify-start'>
-                    <button className='cursor-pointer self-auto content-center items-center text-center rounded-full bg-gray-900 w-10 hover:border-2'>
+                <div className='flex basis-64 justify-end gap-5 pr-5'>
+                    <button className='flex justify-center cursor-pointer items-center text-center rounded-full bg-gray-900 w-10 hover:border-2'>
                         <FontAwesomeIcon icon={faUser} className='text-2xl' />
+                    </button>
+                    <button className='flex justify-center cursor-pointer items-center text-center rounded-full bg-gray-900 w-10 hover:border-2'>
+                        <FontAwesomeIcon icon={faMoon} className='text-2xl' />
+                    </button>
+                    <button className='flex justify-center cursor-pointer  items-center text-center rounded-full bg-gray-900 w-10 hover:border-2'>
+                        <FontAwesomeIcon icon={faGear} className='text-2xl' />
                     </button>
                 </div>
             </nav>
