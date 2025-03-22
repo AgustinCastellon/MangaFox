@@ -22,7 +22,7 @@ export const getMangaCovers = async (mangaIds) => {
             });
             const cover = response.data.data.relationships.find(r => r.type === "cover_art");
             if (cover) {
-                coverData[id] = `${COVER_BASE_URL}/${id}/${cover.attributes.fileName}.512.jpg`
+                coverData[id] = `${COVER_BASE_URL}/${id}/${cover.attributes.fileName}`
             }
         }));
         return coverData;
