@@ -15,7 +15,11 @@ export const getMangaCovers = async (mangaIds) => {
     try {
         const coverData = {};
         await Promise.all(mangaIds.map(async (id) => {
-            const response = await axios.get(`${BASE_URL}/manga/${id}?includes[]=cover_art`);
+            const response = await axios.get(`${BASE_URL}/manga/${id}?includes[]=cover_art`, {
+                headers: {
+                    Referer: "https://mangadex.org"
+                }
+            });
             const cover = response.data.data.relationships.find(r => r.type === "cover_art");
             if (cover) {
                 coverData[id] = `${COVER_BASE_URL}/${id}/${cover.attributes.fileName}.512.jpg`

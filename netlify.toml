@@ -9,4 +9,4 @@
   to = "https://uploads.mangadex.org/covers/:splat"
   status = 200
   force = true
-  headers = {Referrer-Policy = "no-referrer"}
+  headers = {Referrer-Policy = "origin"}
