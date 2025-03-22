@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { findMangaByTitle } from '../Services/MangaDex/MangaService';
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import SearchingLoader from "./skeletonLoader/searchingLoader";
+import SearchingLoader from "./skeletonLoader/SearchingLoader";
 
 function MangaSearch() {
 
