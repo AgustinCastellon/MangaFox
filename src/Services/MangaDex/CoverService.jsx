@@ -18,7 +18,7 @@ export const getMangaCovers = async (mangaIds) => {
             const response = await axios.get(`${BASE_URL}/manga/${id}?includes[]=cover_art`);
             const cover = response.data.data.relationships.find(r => r.type === "cover_art");
             if (cover && cover.attributes?.fileName) {
-                coverData[id] = `${COVER_BASE_URL}/${id}/${cover.attributes.fileName}.512.jpg`;
+                coverData[id] = `${COVER_BASE_URL}/covers/${id}/${cover.attributes.fileName}`;
             } else {
                 coverData[id] = null;
             }
