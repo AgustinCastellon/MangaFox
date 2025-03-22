@@ -110,7 +110,7 @@ function MangaDetail() {
                     {!manga?.coverUrl ? (
                         <CoverDetailLoader />
                     ) : (
-                        <img src={`${manga?.coverUrl}.256.jpg`} alt={manga?.coverUrl} className="h-64 w-46 rounded-xl object-cover outline-4 outline-offset-0 outline-slate-700 outline-solid " />
+                        <img src={`${manga?.coverUrl}`} alt={manga?.coverUrl} className="h-64 w-46 rounded-xl object-cover outline-4 outline-offset-0 outline-slate-700 outline-solid " />
                     )}
                 </div>
                 <div className="absolute left-65 mt-2 h-45 flex flex-col justify-between">

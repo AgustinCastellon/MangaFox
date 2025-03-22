@@ -90,7 +90,7 @@ function Carousel({ mangas = [] }) {
                         <div key={index} className='block bg-linear-to-r/srgb from-slate-800 to-gray-900'>
                             <div className='flex '>
                                 <div className='w-1/4 flex-shrink-0' >
-                                    <img src={`${d.coverUrl}.512.jpg`} alt={d.title || "Manga Fox"} className='rounded-lg w-50 h-[300px] object-cover' />
+                                    <img src={`${d.coverUrl}`} alt={d.title || "Manga Fox"} className='rounded-lg w-50 h-[300px] object-cover' />
                                 </div>
                                 <div className='flex flex-col justify-between  w-3/4'>
                                     <header>

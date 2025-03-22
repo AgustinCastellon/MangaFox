@@ -111,7 +111,7 @@ function MangaSearch() {
                                         {mangasFound?.map((m, index) => (
                                             <Link to={`/manga/${m.id}`} key={index}>
                                                 <div onClick={() => setModalOpen(false)} key={index} className="flex bg-slate-800 p-1 rounded-lg hover:bg-slate-700 cursor-pointer">
-                                                    <img src={`${m.coverUrl}.256.jpg`} alt={m.title} className="w-17 h-24 object-cover object-top rounded-lg" />
+                                                    <img src={`${m.coverUrl}`} alt={m.title} className="w-17 h-24 object-cover object-top rounded-lg" />
                                                     <div className="pl-2">
                                                         <h1 className="text-sm font-bold line-clamp-1 mb-2">{m.title}</h1>
                                                         <div className="flex gap-4 mb-2">

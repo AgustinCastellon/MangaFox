@@ -111,7 +111,7 @@ function MangaListSlider({ topMangas }) {
             <Slider {...settings} >
                 {topMangas?.map((manga, index) =>          
                         <div key={index} className="relative" onMouseEnter={(event) => handleMouseEnter(manga.id, event)} onMouseLeave={handleMouseLeave}>
-                            <img src={`${manga.coverUrl}.512.jpg`} alt={manga.title} className="2xl:h-76 2xl:w-50 lg:w-35 lg:h-55 rounded-sm hover:brightness-70 object-cover" />
+                            <img src={`${manga.coverUrl}`} alt={manga.title} className="2xl:h-76 2xl:w-50 lg:w-35 lg:h-55 rounded-sm hover:brightness-70 object-cover" />
                             <h1 className="pr-5 line-clamp-2">{manga.title}</h1>
                             {mangaId === manga.id && <ModalMangaCard manga={manga} position={modalPosition} />}
                         </div>                  
