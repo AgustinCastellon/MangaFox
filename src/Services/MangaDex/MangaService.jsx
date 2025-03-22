@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getCoverUrl } from './CoverService';
 import { getMangaStatistics } from './StatisticsService'
-const BASE_URL = 'https://api.mangadex.org';
+const BASE_URL = '/api';
 
 /**
  * Obtiene todos los mangas
