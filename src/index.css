@@ -4,6 +4,7 @@
 
 @theme {
   --font-jost: 'Jost', sans-serif;
+  --breakpoint-3xl: 110rem;
 }
 
 ::-webkit-scrollbar-thumb { 
@@ -37,8 +38,10 @@ body {
 
 
 /* the parent */
-#manga-slider .slick-list {
-  padding-left: 145px !important;
+@media (min-width: 1536px) {
+  #manga-slider .slick-list {
+    padding-left: 145px !important;
+  }
 }
 
 #manga-slider .slick-prev::before,

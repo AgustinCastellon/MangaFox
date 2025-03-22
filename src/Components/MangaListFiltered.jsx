@@ -28,12 +28,12 @@ function MangaList({ mangas }) {
     }
 
     return (
-        <div className="grid grid-cols-6 gap-2.5">
+        <div className="grid xl:grid-cols-6 lg:grid-cols-5 xl:gap-2.5 lg:gap-4 xl:w-full lg:max-w-fit lg:mx-auto">
             {mangas?.map((manga, index) =>
             <Link key={index} to={`/manga/${manga.id}`}>
-                <div  className="relative h-75"
+                <div  className="relative h-75   lg:w-50 xl:w-full"
                     onMouseEnter={(event) => handleMouseEnter(manga.id, event)} onMouseLeave={handleMouseLeave}>
-                    <img src={`${manga.coverUrl}.512.jpg`} alt={manga.title} className="h-64 w-46 object-cover rounded-sm" />
+                    <img src={`${manga.coverUrl}.512.jpg`} alt={manga.title} className="xl:h-64 lg:h-68 2xl:w-46 lg:w-50 object-cover rounded-sm" />
                     <span className="text-sm font-medium line-clamp-2">{manga.title}</span>
                     {mangaId === manga.id && <ModalMangaCard manga={manga} position={modalPosition} listPosition={listPosition}/>}
                 </div>

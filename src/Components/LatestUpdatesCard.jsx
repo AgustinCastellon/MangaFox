@@ -23,20 +23,20 @@ const getFlagUrl = (lang) => {
 function LatestUpdatesCard({ chapters = [] }) {
 
     return (
-        <div className="grid grid-cols-4 gap-1">
+        <div className="grid grid-cols-1 gap-2  p-2 border-slate-600 border-l-1">
             {chapters?.map((chapter, index) => (
-                <div key={index} className="flex">
+                <div key={index} className="3xl:flex xl:flex 2xl:block text-xs cursor-pointer hover:bg-slate-800 rounded-lg">
                     <div className="">
-                        <img src={chapter.coverUrl} alt="" className="rounded-xl w-22 h-[110px]" />
+                        <img src={chapter.coverUrl} alt="" className="rounded-xl 3xl:w-20 3xl:h-[85px] 2xl:w-full 2xl:h-15 xl:w-20 xl:h-[85px] object-cover object-center" />
                     </div>
-                    <div className="w-2/3 flex flex-col justify-center gap-2 ml-2">
-                        <h1 className="font-black text-lg line-clamp-1">{chapter.title}</h1>
+                    <div className="w-3/3 flex flex-col justify-center gap-2 ml-2 ">
+                        <h1 className="font-black line-clamp-1">{chapter.title}</h1>
                         <div className="inline-flex gap-1">
                             <img src={getFlagUrl(chapter.translate)} alt="lang" className="object-scale-down" />
                             <p className="">Vol.{chapter.vol} Ch.{chapter.chapter}</p>
                         </div>
-                        <div className="flex justify-between">
-                            <p className="truncate"><FontAwesomeIcon icon={faUser} /> {chapter.user}</p>
+                        <div className="3xl:flex 2xl:block justify-between">
+                            <p className="line-clamp-1 text-sky-300"><FontAwesomeIcon icon={faUser} className="text-gray-400"/> {chapter.user}</p>
                             <p className="text-nowrap text-gray-400">{chapter.updatedAt ? dayjs(chapter.updatedAt).fromNow() : "unknow date"}</p>
                         </div>
                     </div>

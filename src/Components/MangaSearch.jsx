@@ -65,7 +65,7 @@ function MangaSearch() {
 
     return (
         <div className="flex flex-col relative">
-            <div className='flex h-full items-center gap-2 bg-gray-900  content-center w-150 rounded-2xl text-lg border border-gray-400'>
+            <div className='flex h-full items-center gap-2 bg-gray-900  content-center 2xl:w-150 lg:w-120 rounded-2xl text-lg border border-gray-400'>
                 <FontAwesomeIcon icon={faSearch} className='pl-3 text-gray-500' />
                 <input
                     type="text"

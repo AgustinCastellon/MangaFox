@@ -2,12 +2,13 @@ import { faPlay, faPlus, faChevronLeft, faChevronRight } from '@fortawesome/free
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Slider from "react-slick";
 import PropTypes from "prop-types";
-import {useState} from 'react'
+import { useState } from 'react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AnimatePresence } from 'framer-motion';
 import ChooseChapterModal from './modals/ChooseChapterModal';
 import { data } from 'react-router-dom';
+import CarouselLoader from './skeletonLoader/CarouselLoader';
 
 const SamplePrevArrow = (props) => {
     const { className, onClick } = props;
@@ -48,6 +49,14 @@ var settings = {
     pauseOnHover: true,
     nextArrow: <SampleNextArrow to="next" />,
     prevArrow: <SamplePrevArrow to="prev" />,
+    responsive: [
+        {
+            breakpoint: 1535,
+            settings: {
+                arrows: null,
+            }
+        }
+    ]
 };
 
 
@@ -56,7 +65,7 @@ function Carousel({ mangas = [] }) {
     const [modalFirstChapter, setModalFirstChapter] = useState(false);
     const [mangaId, setMangaId] = useState(null);
 
-    const handleModal = (id)=>{
+    const handleModal = (id) => {
         setModalFirstChapter(true);
         setMangaId(id);
         console.log(mangaId)
@@ -64,52 +73,56 @@ function Carousel({ mangas = [] }) {
 
     return (
 
-        <div className='w-[900px] m-auto' id="carousel-slider">
+        <div className='2xl:w-[900px] m-auto' id="carousel-slider">
             {modalFirstChapter && (
                 <AnimatePresence>
-                    <ChooseChapterModal 
-                        mangaId={mangaId} 
+                    <ChooseChapterModal
+                        mangaId={mangaId}
                         setModalOpen={setModalFirstChapter} // Pasa la función setModalOpen
                     />
                 </AnimatePresence>
             )}
-            <Slider {...settings} >
-                {mangas?.map((d, index) => (
-                    <div key={index}  className='block bg-linear-to-r/srgb from-slate-800 to-gray-900'>
-                        <div className='flex '>
-                            <div className='w-1/4 flex-shrink-0' >
-                                <img src={`${d.coverUrl}.512.jpg`} alt={d.title || "Manga Fox"} className='rounded-lg w-50 h-[300px] object-cover' />
-                            </div>
-                            <div className='flex flex-col justify-between  w-3/4'>
-                                <header>
+            {!mangas ? (
+                <CarouselLoader />
+            ) : (
+                <Slider {...settings} >
+                    {mangas?.map((d, index) => (
+                        <div key={index} className='block bg-linear-to-r/srgb from-slate-800 to-gray-900'>
+                            <div className='flex '>
+                                <div className='w-1/4 flex-shrink-0' >
+                                    <img src={`${d.coverUrl}.512.jpg`} alt={d.title || "Manga Fox"} className='rounded-lg w-50 h-[300px] object-cover' />
+                                </div>
+                                <div className='flex flex-col justify-between  w-3/4'>
+                                    <header>
 
-                                    <h1 className='font-black text-3xl line-clamp-2'>{d.title}</h1>
-                                    <div className='flex gap-2 pt-5 flex-wrap'>
-                                        {d.genres.map((genre, index) => (
-                                            <span key={index} className='bg-gray-700 text-[10px] font-bold px-1 rounded-md'>
-                                                {genre}
-                                            </span>
-                                        ))
-                                        }
+                                        <h1 className='font-black text-3xl line-clamp-2'>{d.title}</h1>
+                                        <div className='flex gap-2 pt-5 flex-wrap'>
+                                            {d.genres.map((genre, index) => (
+                                                <span key={index} className='bg-gray-700 text-[10px] font-bold px-1 rounded-md'>
+                                                    {genre}
+                                                </span>
+                                            ))
+                                            }
+                                        </div>
+
+                                    </header>
+                                    <p className='text-gray-300 text-left text-sm mt-3 line-clamp-5'>
+                                        {d.description ? d.description : "Not description..."}
+                                    </p>
+                                    <div className='text-end pb-1'>
+                                        <button onClick={() => handleModal(d?.id)} className='bg-slate-700 font-bold text-lg rounded-lg w-40 p-1 hover:bg-slate-600 cursor-pointer'>
+                                            <FontAwesomeIcon icon={faPlay} /> Leer Ahora
+                                        </button>
+                                        <button className='bg-slate-700 font-bold text-lg p-1 rounded-full w-9 ml-6 hover:bg-slate-600 cursor-pointer'>
+                                            <FontAwesomeIcon icon={faPlus} />
+                                        </button>
                                     </div>
-
-                                </header>
-                                <p className='text-gray-300 text-left text-sm mt-3 line-clamp-5'>
-                                    {d.description ? d.description : "Not description..."}
-                                </p>
-                                <div className='text-end pb-1'>
-                                    <button onClick={()=> handleModal(d?.id)} className='bg-slate-700 font-bold text-lg rounded-lg w-40 p-1 hover:bg-slate-600 cursor-pointer'>
-                                        <FontAwesomeIcon icon={faPlay} /> Leer Ahora
-                                    </button>
-                                    <button className='bg-slate-700 font-bold text-lg p-1 rounded-full w-9 ml-6 hover:bg-slate-600 cursor-pointer'>
-                                        <FontAwesomeIcon icon={faPlus} />
-                                    </button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </Slider>
+                    ))}
+                </Slider>
+            )}
         </div>
 
     )

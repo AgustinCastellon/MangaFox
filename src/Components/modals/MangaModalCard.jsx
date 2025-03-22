@@ -15,22 +15,22 @@ function ModalMangaCard({ manga, position, listPosition }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.2, delay: .3 }}
-                className={`absolute backdrop-blur-sm backdrop-brightness-20 ${position === "right" ? "left-47" : "right-47"}
-            ${listPosition === "newPosition" ? "-top-15 left" : "top-0"} w-72 h-85 rounded-md shadow-lg z-50`}
+                className={`absolute backdrop-blur-sm backdrop-brightness-20 ${position === "right" ? "2xl:left-47 lg:left-32" : "2xl:right-47 lg:right-32"}
+            ${listPosition === "newPosition" ? "-top-15 left" : "top-0"} 2xl:w-72 2xl:h-85 lg:w-62 lg:h-74 rounded-md shadow-lg z-50`}
             >
                 <div className="">
                     <img src={manga.coverUrl} alt={manga.title} className="rounded-t-sm h-30 w-72 object-top object-cover" />
                 </div>
                 <div className="mt-1 p-2">
-                    <h2 className="text-sm font-bold line-clamp-2">{manga.title}</h2>
-                    <p className="text-xs text-gray-300 max-h-15 line-clamp-4">{manga.description}</p>
+                    <h2 className="text-sm font-bold 2xl:line-clamp-2 lg:line-clamp-1">{manga.title}</h2>
+                    <p className="text-xs text-gray-300 max-h-15 2xl:line-clamp-4 lg:line-clamp-2">{manga.description}</p>
                     <div className="mt-2 text-xs opacity-75">
                         <p><strong>Autor:</strong> {manga.author}</p>
                         <p><strong>Publicación:</strong> {manga.year}</p>
                         <p><strong>Status:</strong> {manga.status}</p>
                     </div>
                 </div>
-                <div className="flex absolute justify-center w-full bottom-2 gap-1 px-2 ">
+                <div className="flex absolute justify-center w-full 2xl:bottom-2 lg:bottom-5 gap-1 px-2 ">
                     <Link to={`/manga/${manga.id}`} className="" >
                         <button className="flex justify-center items-center bg-gray-700 px-3 py-1 rounded-l-md text-white cursor-pointer hover:bg-gray-500">
                             <FontAwesomeIcon icon={faBookOpen} className="text-xl" />

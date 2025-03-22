@@ -7,6 +7,7 @@ import LatestUpdatesCard from "../Components/LatestUpdatesCard";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import MangaListSlider from "../Components/MangaListSlider";
 import { Link } from "react-router-dom";
+import LastesUpdatesLoader from "../Components/skeletonLoader/LastesUpdatesLoader";
 function Home() {
 
     const [mangas, setMangas] = useState(null);
@@ -51,33 +52,39 @@ function Home() {
     }, []);
 
     return (
-        <div className='w-[1200px]  mx-auto px-4'>
-            <h1 className='font-medium mb-3 text-3xl'>Nuevo Titulos Populares</h1>
-            <Carousel mangas={mangas} />
-            <div className="flex items-center justify-between mt-15 mb-4">
-                <h1 className='font-medium text-3xl'>Ultimas Actualizaciones</h1>
-                <FontAwesomeIcon icon={faArrowRight} className="text-2xl" />
+        <div className="flex w-full mx-auto">
+            <div className="flex-1"></div>
+            <div className='2xl:max-w-[1200px] lg:max-w-[850px] mx-auto px-4 '>
+                <h1 className='font-medium mb-3 text-3xl'>Nuevo Titulos Populares</h1>
+                <Carousel mangas={mangas} />
+                <div className="flex items-center justify-between mt-15 mb-4">
+                    <h1 className='font-medium text-3xl'>Mejor Puntuados</h1>
+                    <Link to='/mangas?filter=Top-Rated'>
+                        <FontAwesomeIcon icon={faArrowRight} className="text-2xl" />
+                    </Link>
+                </div>
+                <MangaListSlider topMangas={topMangas} />
+                <div className="flex items-center justify-between  mb-4">
+                    <h1 className='font-medium text-3xl'>Ultimos Lanzamientos</h1>
+                    <Link to='/mangas?filter=Latest Releases'>
+                        <FontAwesomeIcon icon={faArrowRight} className="text-2xl" />
+                    </Link>
+                </div>
+                <MangaListSlider topMangas={newMangas} />
             </div>
-            <LatestUpdatesCard chapters={chapters} />
-            <div className="flex items-center justify-between mt-15 mb-4">
-                <h1 className='font-medium text-3xl'>Mejor Puntuados</h1>
-                <Link to='/mangas?filter=Top-Rated'>
-                    <FontAwesomeIcon icon={faArrowRight} className="text-2xl" />
-                </Link>
+            <div className="flex-1">
+                <div className="flex justify-between">
+                    <h1 className="font-bold">Ultimas Actualizaciones</h1>
+                    <Link to='/mangas?filter=Latest Releases' className="flex items-center pr-2">
+                        <FontAwesomeIcon icon={faArrowRight} className="text-lg" />
+                    </Link>
+                </div>
+                {!chapters? (
+                    <LastesUpdatesLoader/>
+                ) : (
+                <LatestUpdatesCard chapters={chapters} />
+                )}
             </div>
-            <MangaListSlider topMangas={topMangas} />
-            <div className="flex items-center justify-between  mb-4">
-                <h1 className='font-medium text-3xl'>Ultimos Lanzamientos</h1>
-                <Link to='/mangas?filter=Latest Releases'>
-                    <FontAwesomeIcon icon={faArrowRight} className="text-2xl" />
-                </Link>
-            </div>
-            <MangaListSlider topMangas={newMangas} />
-            {/* <div className="flex items-center justify-between mt-15 mb-4">
-                <h1 className='font-medium text-3xl'>Your List</h1>
-                <FontAwesomeIcon icon={faArrowRight} className="text-2xl"/>
-            </div>
-            <MangaListSlider topMangas={topMangas} /> */}
         </div>
     )
 

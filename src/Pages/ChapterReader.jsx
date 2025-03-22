@@ -6,6 +6,7 @@ import { faBars, faChevronLeft, faChevronRight, faClose, faPlay, faPlus } from "
 import { getCapitulosManga, getRandomManga } from "../Services/MangaDex/MangaService";
 import ChapterMenu from "../Components/ChapterMenu";
 import { motion, AnimatePresence } from "framer-motion";
+import ChapterPageLoader from "../Components/skeletonLoader/ChapterPageLoader";
 
 function ChapterReader() {
 
@@ -25,6 +26,11 @@ function ChapterReader() {
     const [zoom, setZoom] = useState(60);
     const [numberChapter, setNumberChapter] = useState(1);
     const [isFullScreen, setIsFullScreen] = useState(false);
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+    const handleImageLoad = () => {
+        setImageLoaded(true);
+    };
 
     useEffect(() => {
         const onFullScreenChange = () => {
@@ -352,15 +358,22 @@ function ChapterReader() {
             >
                 <ChapterMenu
                     chapters={chapters} currentChapter={currentChapter} handleNextChapter={handleNextChapter}
-                    handlePrevChapter={handlePrevChapter} isFullScreen={isFullScreen} numberChapter={numberChapter} setZoom={setZoom} zoom={zoom} toggleFullScreen={toggleFullScreen} />
+                    handlePrevChapter={handlePrevChapter} isFullScreen={isFullScreen} numberChapter={numberChapter} setZoom={setZoom} zoom={zoom} toggleFullScreen={toggleFullScreen}
+                />
                 {chapter?.map((page, index) => (
-                    <img
-                        key={index}
-                        ref={(el) => (imagesRef.current[index] = el)} // Guardar referencia de cada imagen
-                        src={page?.pageUrl}
-                        alt={`Página ${index + 1}`}
-                        className={`${imgZoom(zoom)} m-auto pb-2 transform duration-300 ease-in-out`}
-                    />
+                    <div key={index}>
+                        {!imageLoaded && (
+                            <ChapterPageLoader/>
+                        )}
+                        <img
+                            key={index}
+                            ref={(el) => (imagesRef.current[index] = el)} // Guardar referencia de cada imagen
+                            src={page?.pageUrl}
+                            alt={`Página ${index + 1}`}
+                            className={`${imgZoom(zoom)} m-auto pb-2 transform duration-300 ease-in-out`}
+                            onLoad={handleImageLoad}
+                        />
+                    </div>
                 ))}
             </div>
         </div>
