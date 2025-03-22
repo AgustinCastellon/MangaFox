@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://api.mangadex.org';
-const COVER_BASE_URL = 'https://uploads.mangadex.org/covers'
+const BASE_URL = '/api';
+const COVER_BASE_URL = '/covers'
 /**
  * Devuelve la URL de la portada de un manga.
  */
 export const getCoverUrl = (mangaId, coverFileName) =>
-    `https://uploads.mangadex.org/covers/${mangaId}/${coverFileName}`;
+    `${COVER_BASE_URL}/${mangaId}/${coverFileName}`;
 
 /**
  * Obtiene las portadas de varios mangas a partir de sus IDs.

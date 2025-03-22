@@ -7,4 +7,18 @@ export default defineConfig({
   plugins: [react(),
       tailwindcss()
   ],
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://api.mangadex.org",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+      "/covers": {
+        target: "https://uploads.mangadex.org/covers",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/covers/, ""),
+      },
+    },
+  },
 })
