@@ -91,7 +91,7 @@ function MangaDetail() {
     }
 
     return (
-        <div className='w-[1200px]  mx-auto px-4 relative'>
+        <div className='xl:w-[1200px]  mx-auto px-4 relative'>
             {modalFirstChapter && (
                 <AnimatePresence>
                     <ChooseChapterModal

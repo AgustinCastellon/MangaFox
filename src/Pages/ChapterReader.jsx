@@ -236,12 +236,12 @@ function ChapterReader() {
     }, [activeMenu]);
 
     return (
-        <div className="flex justify-center relative">
-            <FontAwesomeIcon onClick={handleActiveMenu} icon={faBars} className={`${activeMenu == true ? 'invisible' : 'visible'} -top-42 absolute right-2 z-3 text-xl  rounded-lg px-2 py-1 hover:bg-slate-500 cursor-pointer `} />
+        <div className="flex 3xl:justify-center 2xl:justify-start 3xl:pl-0 2xl:pl-15 relative">
+            <FontAwesomeIcon onClick={handleActiveMenu} icon={faBars} className={`${activeMenu == true ? 'invisible' : 'visible'} absolute right-2 z-3 text-xl  rounded-lg px-2 py-1 hover:bg-slate-500 cursor-pointer `} />
             <AnimatePresence >
                 {activeMenu && (
                     <motion.div
-                        className="z-2 -top-43 absolute right-1 w-95 bg-slate-600 rounded-lg"
+                        className="z-2 absolute right-1 w-95 bg-slate-600 rounded-lg"
                         initial={{ opacity: 0, x: '100vw' }}  // Start from outside the screen
                         animate={{ opacity: 1, x: 0 }}         // Slide in to its position
                         exit={{ opacity: 0, x: '100vw' }}     // Slide out to the right when closing
@@ -252,7 +252,7 @@ function ChapterReader() {
                         }}
                     >
                         <FontAwesomeIcon onClick={handleCloseMenu} icon={faClose} className="ml-4 text-2xl my-2 cursor-pointer hover:bg-slate-700 rounded-full px-2 py-1" />
-                        <div className="scrollbar overflow-y-scroll h-[805px] mb-3 scrollable-menu">
+                        <div className="scrollbar overflow-y-scroll h-[790px] mb-3 scrollable-menu">
                             <div className="flex flex-col px-4 pt-2">
                                 <div className="flex justify-between">
                                     <button
@@ -354,7 +354,7 @@ function ChapterReader() {
             </AnimatePresence>
             <div
                 ref={combinedRef}
-                className="bg-black rounded-xl fixed w-[1090px] top-20 z-2 scrollbar scrollbar-hover:cursor-grab scrollbar-thumb-slate-700 overflow-y-scroll h-[870px] group "
+                className="bg-black rounded-xl fixed 2xl:w-[1090px] xl:w-[880px] z-2 scrollbar scrollbar-hover:cursor-grab scrollbar-thumb-slate-700 overflow-y-scroll h-[870px] group "
             >
                 <ChapterMenu
                     chapters={chapters} currentChapter={currentChapter} handleNextChapter={handleNextChapter}

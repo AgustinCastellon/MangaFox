@@ -28,7 +28,7 @@ function MangaList({ mangas }) {
     }
 
     return (
-        <div className="grid xl:grid-cols-6 lg:grid-cols-5 xl:gap-2.5 lg:gap-4 xl:w-full lg:max-w-fit lg:mx-auto">
+        <div className="grid xl:grid-cols-6 lg:grid-cols-4 xl:gap-2.5 lg:gap-4 xl:w-full lg:max-w-fit lg:mx-auto">
             {mangas?.map((manga, index) =>
             <Link key={index} to={`/manga/${manga.id}`}>
                 <div  className="relative h-75   lg:w-50 xl:w-full"

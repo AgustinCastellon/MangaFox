@@ -72,19 +72,18 @@ function MangaListSlider({ topMangas }) {
         slidesToScroll: 5,
         responsive: [
             {
-              breakpoint: 1535,
+              breakpoint: 1536,
               settings: {
-                slidesToShow: 5,
+                slidesToShow: 4.5,
                 slidesToScroll: 5,
                 
               }
             },
             {
-              breakpoint: 600,
+              breakpoint: 1280,
               settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                initialSlide: 2
+                slidesToShow: 5,
+                slidesToScroll: 5,
               }
             },
             {
@@ -111,7 +110,7 @@ function MangaListSlider({ topMangas }) {
             <Slider {...settings} >
                 {topMangas?.map((manga, index) =>          
                         <div key={index} className="relative" onMouseEnter={(event) => handleMouseEnter(manga.id, event)} onMouseLeave={handleMouseLeave}>
-                            <img src={`${manga.coverUrl}`} alt={manga.title} className="2xl:h-76 2xl:w-50 lg:w-35 lg:h-55 rounded-sm hover:brightness-70 object-cover" />
+                            <img src={`${manga.coverUrl}`} alt={manga.title} className="3xl:h-76 3xl:w-50 xl:w-40 xl:h-65 lg:w-45 lg:h-65 rounded-sm hover:brightness-70 object-cover" />
                             <h1 className="pr-5 line-clamp-2">{manga.title}</h1>
                             {mangaId === manga.id && <ModalMangaCard manga={manga} position={modalPosition} />}
                         </div>                  

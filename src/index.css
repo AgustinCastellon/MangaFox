@@ -44,6 +44,12 @@ body {
   }
 }
 
+@media (min-width: 1280px) {
+  #manga-slider .slick-list {
+    padding-left: 145px !important;
+  }
+}
+
 #manga-slider .slick-prev::before,
 #manga-slider .slick-next::before {
   display: none;

@@ -79,6 +79,7 @@ export const getMangasPopulares = async (limit) => {
                 "order[year]": "desc",
                 "order[followedCount]": "desc",
                 "includes[]": "cover_art",
+                hasAvailableChapters: true,
                 limit: limit,
             },
         });
@@ -187,7 +188,7 @@ export const getFirstChapterEachLanguage = async (id) => {
             params: {
                 "order[chapter]": "asc",
                 "includeExternalUrl": 0,
-                "includes[]": ["user", "scanlation_group"]
+                "includes[]": ["user", "scanlation_group"],
             }
         })
 

@@ -95,7 +95,7 @@ function Carousel({ mangas = [] }) {
                                 <div className='flex flex-col justify-between  w-3/4'>
                                     <header>
 
-                                        <h1 className='font-black text-3xl line-clamp-2'>{d.title}</h1>
+                                        <h1 className='font-black md:text-xl 2xl:text-3xl line-clamp-2'>{d.title}</h1>
                                         <div className='flex gap-2 pt-5 flex-wrap'>
                                             {d.genres.map((genre, index) => (
                                                 <span key={index} className='bg-gray-700 text-[10px] font-bold px-1 rounded-md'>

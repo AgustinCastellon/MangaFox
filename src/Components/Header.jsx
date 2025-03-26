@@ -52,9 +52,7 @@ function Header() {
     }, [userModalOpen, SettingModalOpen])
 
     return (
-        <div className='relative mb-50'>
-            <div className="absolute top-0 left-0 right-0 bottom-0 h-60 z-1 bg-linear-to-t from-gray-900 to-transparent"></div>
-            <div className='absolute top-0 left-0 right-0 bottom-0 h-60 z-0 bg-[url(/hero3.jpeg)] bg-cover bg-center brightness-50'></div>
+        <div className='fixed w-full top-0 z-99 pb-2 bg-slate-800'>   
             <nav className='flex justify-between pt-3 z-10 relative'>
                 <Link to={'/'}>
                     <div className='flex pl-5 items-center'>

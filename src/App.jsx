@@ -5,7 +5,10 @@ function App() {
   return (
     <>
       <div className='font-jost'>
-        <Header />
+        <div className='mb-25'>
+
+        <Header className=""/>
+        </div>
         <AppRouter/>
       </div>
     </>
