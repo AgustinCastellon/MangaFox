@@ -7,12 +7,16 @@
   --breakpoint-3xl: 110rem;
 }
 
-::-webkit-scrollbar-thumb { 
-  border-radius: 6px;  /* Aquí redondeamos los bordes */
+@custom-variant light (&:where(.light, .light *));
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  /* Aquí redondeamos los bordes */
 }
 
 .scrollable-menu::-webkit-scrollbar {
-  width: 2px; /* Ajusta el ancho del scrollbar */
+  width: 2px;
+  /* Ajusta el ancho del scrollbar */
 }
 
 :root {
@@ -24,7 +28,9 @@
 
 body {
   @apply bg-gray-900;
-  color: white;
+  @apply light:bg-white;
+  @apply light:text-black;
+  @apply text-white;
 }
 
 .slick-dots li.slick-active button:before {
@@ -33,7 +39,7 @@ body {
 }
 
 .slick-dots li button:before {
-  color: #e9e1e1 !important;
+  color: #bbb5b5 !important;
 }
 
 

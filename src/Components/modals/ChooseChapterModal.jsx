@@ -70,18 +70,18 @@ function ChooseChapterModal({ mangaId, setModalOpen }) {
             />
 
             <motion.div
-                className="bg-slate-900 rounded-lg py-2 px-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-999"
+                className="bg-slate-900 light:bg-amber-200 rounded-lg py-2 px-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-999"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isExiting ? { opacity: 0, scale: 0 } : { opacity: 1, scale: 1 }} // Cambia según `isExiting`
                 transition={{ duration: 0.3 }}
             >
-                <header className="flex justify-between items-center border-b-[0.5px] border-slate-700 mb-2">
-                    <h1 className="text-xl">Seleccione un grupo</h1>
+                <header className="flex justify-between items-center border-b-[0.5px] light:border-black border-slate-700 mb-2">
+                    <h1 className="text-xl light:text-black">Seleccione un grupo</h1>
                     <button
                         onClick={handleClose} // Cambia el estado para cerrar el modal
-                        className="flex justify-center cursor-pointer items-center text-center rounded-full py-1 px-2 hover:bg-slate-700"
+                        className="flex justify-center cursor-pointer items-center text-center rounded-full py-1 px-2 light:hover:bg-amber-100 hover:bg-slate-700"
                     >
-                        <FontAwesomeIcon icon={faClose} className="text-lg" />
+                        <FontAwesomeIcon icon={faClose} className="text-lg light:text-black" />
                     </button>
                 </header>
                 {!chapters ? (
@@ -92,7 +92,7 @@ function ChooseChapterModal({ mangaId, setModalOpen }) {
                         <div>
                             {chapters?.map((m, index) => (
                                 <Link key={index} to={`/chapter/${mangaId}/${m.id}/${m.attributes.translatedLanguage}`}>
-                                    <div className="w-140 flex justify-between items-center mt-1 bg-slate-600 p-1 rounded-lg hover:bg-slate-500 cursor-pointer">
+                                    <div className="w-140 flex justify-between items-center mt-1 bg-slate-600 light:bg-amber-100 p-1 rounded-lg light:hover:bg-amber-50 hover:bg-slate-500 cursor-pointer">
                                         <div>
                                             <div className="flex items-center">
                                                 <img
@@ -100,20 +100,20 @@ function ChooseChapterModal({ mangaId, setModalOpen }) {
                                                     alt={m.attributes.translatedLanguage}
                                                     className="object-scale-down pr-1"
                                                 />
-                                                <h1 className="font-bold">Cap {m.attributes.chapter}</h1>
+                                                <h1 className="font-bold light:text-black">Cap {m.attributes.chapter}</h1>
                                             </div>
-                                            <span className="text-sm">
-                                                <FontAwesomeIcon icon={faUsers} className="pr-2 text-gray-300" />
+                                            <span className="text-sm light:text-gray-600">
+                                                <FontAwesomeIcon icon={faUsers} className="pr-2 text-gray-300 light:text-gray-600" />
                                                 {m.relationships.find((su) => su.type === "scanlation_group")?.attributes.name || "-"}
                                             </span>
                                         </div>
                                         <div className="flex flex-col w-30">
-                                            <span className="text-gray-300 text-sm">
-                                                <FontAwesomeIcon icon={faClock} className="pr-1" />
+                                            <span className="text-gray-300 text-sm light:text-gray-500">
+                                                <FontAwesomeIcon icon={faClock} className="pr-1 light:text-gray-600" />
                                                 {m?.attributes?.updatedAt ? dayjs(m?.attributes?.updatedAt).fromNow() : "unknow date"}
                                             </span>
-                                            <span className="text-sm line-clamp-1 text-teal-300">
-                                                <FontAwesomeIcon icon={faUser} className="pr-1 text-gray-300" />
+                                            <span className="text-sm line-clamp-1 text-teal-300 light:text-teal-600">
+                                                <FontAwesomeIcon icon={faUser} className="pr-1 text-gray-300 light:text-gray-600" />
                                                 {m.relationships.find((su) => su.type === "user")?.attributes.username || "-"}
                                             </span>
                                         </div>

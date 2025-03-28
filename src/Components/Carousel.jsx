@@ -14,7 +14,7 @@ const SamplePrevArrow = (props) => {
     const { className, onClick } = props;
     return (
         <div onClick={onClick} className={`arrow ${className}`} >
-            <FontAwesomeIcon icon={faChevronLeft} class="arrows" style={{ color: "white", position: "relative", right: "30" }} />
+            <FontAwesomeIcon icon={faChevronLeft} class="arrows" style={{ color: "gray", position: "relative", right: "30" }} />
         </div>
     )
 }
@@ -31,9 +31,10 @@ SampleNextArrow.propTypes = {
 
 function SampleNextArrow(props) {
     const { className, onClick } = props;
+    
     return (
         <div onClick={onClick} className={`arrow ${className}`} >
-            <FontAwesomeIcon icon={faChevronRight} class="arrows" style={{ color: "white", position: "relative", left: "30" }} />
+            <FontAwesomeIcon icon={faChevronRight} class="arrows" style={{ color: "gray", position: "relative", left: "30" }} />
         </div>
     )
 }
@@ -85,9 +86,9 @@ function Carousel({ mangas = [] }) {
             {!mangas ? (
                 <CarouselLoader />
             ) : (
-                <Slider {...settings} >
+                <Slider {...settings}>
                     {mangas?.map((d, index) => (
-                        <div key={index} className='block bg-linear-to-r/srgb from-slate-800 to-gray-900'>
+                        <div key={index} className='block bg-linear-to-r/srgb from-slate-800 to-gray-900 light:from-amber-100 light:to-amber-50'>
                             <div className='flex '>
                                 <div className='w-1/4 flex-shrink-0' >
                                     <img src={`${d.coverUrl}`} alt={d.title || "Manga Fox"} className='rounded-lg w-50 h-[300px] object-cover' />
@@ -95,10 +96,10 @@ function Carousel({ mangas = [] }) {
                                 <div className='flex flex-col justify-between  w-3/4'>
                                     <header>
 
-                                        <h1 className='font-black md:text-xl 2xl:text-3xl line-clamp-2'>{d.title}</h1>
+                                        <h1 className='font-black md:text-xl 2xl:text-3xl line-clamp-2 light:text-black light:pr-2'>{d.title}</h1>
                                         <div className='flex gap-2 pt-5 flex-wrap'>
                                             {d.genres.map((genre, index) => (
-                                                <span key={index} className='bg-gray-700 text-[10px] font-bold px-1 rounded-md'>
+                                                <span key={index} className='bg-gray-700 light:bg-cyan-100 light:text-black text-[10px] font-bold px-1 rounded-md'>
                                                     {genre}
                                                 </span>
                                             ))
@@ -106,14 +107,14 @@ function Carousel({ mangas = [] }) {
                                         </div>
 
                                     </header>
-                                    <p className='text-gray-300 text-left text-sm mt-3 line-clamp-5'>
+                                    <p className='text-gray-300 light:text-gray-800 text-left text-sm mt-3 line-clamp-5 light:pr-2'>
                                         {d.description ? d.description : "Not description..."}
                                     </p>
-                                    <div className='text-end pb-1'>
-                                        <button onClick={() => handleModal(d?.id)} className='bg-slate-700 font-bold text-lg rounded-lg w-40 p-1 hover:bg-slate-600 cursor-pointer'>
+                                    <div className='text-end pb-1 pr-2'>
+                                        <button onClick={() => handleModal(d?.id)} className='bg-slate-700 light:bg-cyan-100 light:text-black font-bold text-lg rounded-lg w-40 p-1 light:hover:bg-cyan-200 hover:bg-slate-600 cursor-pointer light:border-1'>
                                             <FontAwesomeIcon icon={faPlay} /> Leer Ahora
                                         </button>
-                                        <button className='bg-slate-700 font-bold text-lg p-1 rounded-full w-9 ml-6 hover:bg-slate-600 cursor-pointer'>
+                                        <button className='bg-slate-700 light:bg-cyan-100 light:text-black font-bold text-lg p-1 rounded-full w-9 ml-6 light:hover:bg-cyan-200 hover:bg-slate-600 cursor-pointer light:border-1 '>
                                             <FontAwesomeIcon icon={faPlus} />
                                         </button>
                                     </div>

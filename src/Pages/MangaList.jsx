@@ -38,7 +38,7 @@ function MangaList() {
 
     return (
         <div className="xl:w-[1200px] mx-auto px-4 mb-10">
-            <h1 className='font-bold mb-3 text-2xl'>{filter ? filter.replace("-", " ").toUpperCase() : "All Mangas"}</h1>
+            <h1 className='font-bold mb-3 text-2xl light:text-black'>{filter ? filter.replace("-", " ").toUpperCase() : "All Mangas"}</h1>
             <MangaListFiltered mangas={mangas} />
             <Pagination
                 totalItems={totalMangas}

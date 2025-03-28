@@ -42,16 +42,16 @@ function Pagination({ totalItems, itemsPerPage, currentPage, onPageChange }) {
             <button 
                 onClick={() => goToPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`px-3 py-2 rounded ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : "hover:bg-slate-500"}`}
+                className={`px-3 py-2 rounded ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : "hover:bg-slate-500 light:hover:bg-cyan-200"}`}
             >
-                <FontAwesomeIcon icon={faChevronLeft} />
+                <FontAwesomeIcon icon={faChevronLeft} className="light:text-black"/>
             </button>
 
             {renderPageNumbers().map((page, index) => (
                 <button 
                     key={index}
                     onClick={() => goToPage(page)}
-                    className={`px-3 py-2 rounded ${currentPage === page ? "bg-slate-600 text-white" : "hover:bg-slate-500"}`}
+                    className={`px-3 py-2 rounded ${currentPage === page ? "bg-slate-600 text-white light:bg-cyan-200 light:text-black" : "hover:bg-slate-500 light:hover:bg-cyan-100 light:text-black"}`}
                     disabled={page === "..."}
                 >
                     {page}
@@ -61,9 +61,9 @@ function Pagination({ totalItems, itemsPerPage, currentPage, onPageChange }) {
             <button 
                 onClick={() => goToPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className={`px-3 py-2 rounded ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : "hover:bg-slate-500"}`}
+                className={`px-3 py-2 rounded ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : "hover:bg-slate-500 light:hover:bg-cyan-200"}`}
             >
-                <FontAwesomeIcon icon={faChevronRight} />
+                <FontAwesomeIcon icon={faChevronRight} className="light:text-black"/>
             </button>
         </div>
     );
