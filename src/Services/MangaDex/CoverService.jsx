@@ -1,9 +1,10 @@
 import axios from 'axios'
 
 const BASE_URL = '/api';
-const COVER_BASE_URL = 'https://uploads.mangadex.org'
+const COVER_BASE_URL = 'https://api-mangafox.onrender.com/api'
 
 // https://api-mangafox.onrender.com/api
+// https://uploads.mangadex.org
 
 /**
  * Devuelve la URL de la portada de un manga.
