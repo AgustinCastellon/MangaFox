@@ -6,10 +6,14 @@ import MangaSearch from './MangaSearch';
 import UserModal from './modals/UserModal';
 import { useEffect, useRef, useState } from 'react';
 import SettingsModal from './modals/SettingsModal';
+import LoginModal from './modals/LoginModal';
+import SelectLangModal from './modals/SelectLangModal';
 function Header() {
 
     const [userModalOpen, setUserModalOpen] = useState(false);
     const [SettingModalOpen, setSettingModalOpen] = useState();
+    const [loginOpen, setLoginOpen] = useState(false)
+
     const [theme, setTheme] = useState(() => {
 
         if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -74,6 +78,12 @@ function Header() {
 
     return (
         <div className='fixed w-full top-0 z-99 pb-2 bg-slate-800 light:bg-cyan-100'>
+            {/* <SelectLangModal/> */}
+            <AnimatePresence>
+                {loginOpen && (
+                    <LoginModal setLoginOpen={setLoginOpen} />
+                )}
+            </AnimatePresence>
             <nav className='flex justify-between pt-3 z-10 relative'>
                 <Link to={'/'}>
                     <div className='flex pl-5 items-center'>
@@ -102,7 +112,7 @@ function Header() {
                                         exit={{ opacity: 0 }}
                                         transition={{ duration: 0.2 }}
                                     >
-                                        <UserModal />
+                                        <UserModal setLoginOpen={setLoginOpen} />
                                     </motion.div>
                                 )}
                             </AnimatePresence>
@@ -115,7 +125,7 @@ function Header() {
                                 initial={{ opacity: 0, scale: 0.5 }}  // Inicializa con opacidad 0 y escala 0.5
                                 animate={{ opacity: 1, scale: 1 }}    // Finaliza con opacidad 1 y escala 1
                                 exit={{ opacity: 0, scale: 0.5 }}     // Vuelve a escala 0.5 y opacidad 0 al desaparecer
-                                transition={{ duration: 0.5 }}  
+                                transition={{ duration: 0.5 }}
                                 className='flex justify-center items-center'
                             >
                                 {theme === 'light' ?
