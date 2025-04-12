@@ -70,7 +70,7 @@ function MangaSearch() {
                 <input
                     type="text"
                     placeholder="Buscar..."
-                    className="outline-none placeholder-gray-500 w-full light:text-black"
+                    className="outline-none placeholder-gray-500 w-full light:text-black caret-orange-500"
                     onChange={(e) => setTitle(e.target.value)}
                     onClick={handleSearchModal}
                 />
