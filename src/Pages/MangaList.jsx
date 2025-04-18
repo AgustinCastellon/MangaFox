@@ -16,7 +16,7 @@ function MangaList() {
     useEffect(() => {
         const fetchMangaFilter = async () => {
             let data;
-            if (filter === "Top-Rated") {
+            if (filter === "Mejor-Valorados") {
                 data = await getMangasTopRated(mangasPerPage, (page - 1) * mangasPerPage);
             } else if (filter === "Latest Releases") {
                 data = await getMangasRecientes(mangasPerPage, (page - 1) * mangasPerPage);

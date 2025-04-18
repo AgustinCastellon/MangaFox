@@ -71,7 +71,7 @@ export const getMangaById = async (id) => {
 /**
  * Obtiene los mangas más populares
  */
-export const getMangasPopulares = async (limit) => {
+export const getMangasPopulares = async (limit, content) => {
     try {
         const response = await axios.get(
             `${BASE_URL}/manga`, {
@@ -81,6 +81,7 @@ export const getMangasPopulares = async (limit) => {
                 "includes[]": "cover_art",
                 hasAvailableChapters: true,
                 limit: limit,
+                contentRating: content
             },
         });
         return response.data.data.map(manga => {
@@ -103,14 +104,15 @@ export const getMangasPopulares = async (limit) => {
 /**
  * Obtiene los mangas mas recientes
  */
-export const getMangasRecientes = async (limit, offset = 0) => {
+export const getMangasRecientes = async (limit, offset = 0, content) => {
     try {
         const response = await axios.get(`${BASE_URL}/manga`, {
             params: {
                 "order[year]": "desc",
                 "includes[]": ["cover_art", "author"],
                 limit: limit,
-                offset: offset
+                offset: offset,
+                contentRating: content
             }
         });
 
@@ -136,14 +138,15 @@ export const getMangasRecientes = async (limit, offset = 0) => {
 /**
  * Obtiene los mangas mejor calificados
  */
-export const getMangasTopRated = async (limit, offset = 0) => {
+export const getMangasTopRated = async (limit, offset = 0, content) => {
     try {
         const response = await axios.get(`${BASE_URL}/manga`, {
             params: {
                 "order[rating]": "desc",
                 "includes[]": ["cover_art", "author"],
                 limit: limit,
-                offset: offset
+                offset: offset,
+                contentRating: content
             }
         });
 

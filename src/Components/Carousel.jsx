@@ -6,8 +6,7 @@ import { useState } from 'react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AnimatePresence } from 'framer-motion';
-import ChooseChapterModal from './modals/ChooseChapterModal';
-import { data } from 'react-router-dom';
+import ChooseChapterModal from './modals/ChooseChapterModal';   
 import CarouselLoader from './skeletonLoader/CarouselLoader';
 
 const SamplePrevArrow = (props) => {
@@ -88,7 +87,7 @@ function Carousel({ mangas = [] }) {
             ) : (
                 <Slider {...settings}>
                     {mangas?.map((d, index) => (
-                        <div key={index} className='block bg-linear-to-r/srgb from-slate-800 to-gray-900 light:from-amber-100 light:to-amber-50'>
+                        <div key={index} className='block bg-linear-to-r/srgb from-slate-800 to-gray-900 light:from-amber-100 light:to-amber-50 dark:from-stone-800 dark:to-stone-900'>
                             <div className='flex '>
                                 <div className='w-1/4 flex-shrink-0' >
                                     <img src={`${d.coverUrl}`} alt={d.title || "Manga Fox"} className='rounded-lg w-50 h-[300px] object-cover' />
@@ -99,7 +98,7 @@ function Carousel({ mangas = [] }) {
                                         <h1 className='font-black md:text-xl 2xl:text-3xl line-clamp-2 light:text-black light:pr-2'>{d.title}</h1>
                                         <div className='flex gap-2 pt-5 flex-wrap'>
                                             {d.genres.map((genre, index) => (
-                                                <span key={index} className='bg-gray-700 light:bg-cyan-100 light:text-black text-[10px] font-bold px-1 rounded-md'>
+                                                <span key={index} className='bg-gray-700 dark:bg-neutral-600 light:bg-cyan-100 light:text-black text-[10px] font-bold px-1 rounded-md'>
                                                     {genre}
                                                 </span>
                                             ))
@@ -111,10 +110,10 @@ function Carousel({ mangas = [] }) {
                                         {d.description ? d.description : "Not description..."}
                                     </p>
                                     <div className='text-end pb-1 pr-2'>
-                                        <button onClick={() => handleModal(d?.id)} className='bg-slate-700 light:bg-cyan-100 light:text-black font-bold text-lg rounded-lg w-40 p-1 light:hover:bg-cyan-200 hover:bg-slate-600 cursor-pointer light:border-1'>
+                                        <button onClick={() => handleModal(d?.id)} className='bg-slate-700 light:bg-cyan-100 dark:bg-neutral-700 dark:hover:bg-neutral-600 light:text-black font-bold text-lg rounded-lg w-40 p-1 light:hover:bg-cyan-200 hover:bg-slate-600 cursor-pointer light:border-1'>
                                             <FontAwesomeIcon icon={faPlay} /> Leer Ahora
                                         </button>
-                                        <button className='bg-slate-700 light:bg-cyan-100 light:text-black font-bold text-lg p-1 rounded-full w-9 ml-6 light:hover:bg-cyan-200 hover:bg-slate-600 cursor-pointer light:border-1 '>
+                                        <button className='bg-slate-700 light:bg-cyan-100 dark:bg-neutral-700 dark:hover:bg-neutral-600 light:text-black font-bold text-lg p-1 rounded-full w-9 ml-6 light:hover:bg-cyan-200 hover:bg-slate-600 cursor-pointer light:border-1 '>
                                             <FontAwesomeIcon icon={faPlus} />
                                         </button>
                                     </div>

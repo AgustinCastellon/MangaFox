@@ -8,19 +8,27 @@ import { useEffect, useRef, useState } from 'react';
 import SettingsModal from './modals/SettingsModal';
 import LoginModal from './modals/LoginModal';
 import SelectLangModal from './modals/SelectLangModal';
+import ContentRatingModal from './modals/ContentRatingModal';
+import ThemeModal from './modals/ThemeModal';
 function Header() {
 
     const [userModalOpen, setUserModalOpen] = useState(false);
     const [SettingModalOpen, setSettingModalOpen] = useState();
-    const [loginOpen, setLoginOpen] = useState(false)
+    const [loginOpen, setLoginOpen] = useState(false);
+    const [langsOpen, setLangsOpen] = useState(false);
+    const [contentFilterOpen, setContentFilterOpen] = useState(false);
+    const [themesOpen, setThemesOpen] = useState(false)
 
     const [theme, setTheme] = useState(() => {
+        const storedTheme = localStorage.getItem('theme');
 
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            return 'dark'
+        if (storedTheme) {
+            return storedTheme;
         }
-        return 'light'
+
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light';
     });
+
     const userModalRef = useRef();
     const settingModalRef = useRef();
 
@@ -30,11 +38,19 @@ function Header() {
 
     useEffect(() => {
 
+        const htmlElement = document.querySelector('html');
+
+        htmlElement.classList.remove('dark', 'light', 'pink')
+
         if (theme === 'light') {
-            document.querySelector('html').classList.add('light')
-        } else {
-            document.querySelector('html').classList.remove('light')
+            htmlElement.classList.add('light');
+        } else if (theme === 'dark') {
+            htmlElement.classList.add('dark');
+        } else if (theme === 'pink') {
+            htmlElement.classList.add('pink');
         }
+
+        localStorage.setItem('theme', theme);
 
     }, [theme])
 
@@ -77,8 +93,22 @@ function Header() {
     }, [userModalOpen, SettingModalOpen])
 
     return (
-        <div className='fixed w-full top-0 z-99 pb-2 bg-slate-800 light:bg-cyan-100'>
-            {/* <SelectLangModal/> */}
+        <div className='fixed w-full top-0 z-99 pb-2 bg-slate-800 dark:bg-neutral-800 light:bg-cyan-100'>
+            <AnimatePresence>
+                {themesOpen && (
+                    <ThemeModal setThemesOpen={setThemesOpen} setTheme={setTheme} theme={theme}/>
+                )}
+            </AnimatePresence>
+            <AnimatePresence>
+                {contentFilterOpen && (
+                    <ContentRatingModal setContentFilterOpen={setContentFilterOpen} />
+                )}
+            </AnimatePresence>
+            <AnimatePresence>
+                {langsOpen && (
+                    <SelectLangModal setLangsOpen={setLangsOpen} />
+                )}
+            </AnimatePresence>
             <AnimatePresence>
                 {loginOpen && (
                     <LoginModal setLoginOpen={setLoginOpen} />
@@ -96,10 +126,11 @@ function Header() {
                 </div>
                 <div className='flex justify-end gap-5 pr-5'>
                     <div className='flex relative'>
-                        <button onClick={handleUserModal} className='flex justify-center cursor-pointer items-center text-center rounded-full bg-gray-900 light:bg-cyan-50 w-10 light:hover:border-black hover:border-2'>
+                        <button onClick={handleUserModal} className='flex justify-center cursor-pointer items-center text-center rounded-full bg-gray-900 light:bg-cyan-50 w-10 dark:bg-cyan-300 dark:text-black dark:border-black dark:border-2 light:hover:border-black hover:border-2'>
                             <motion.div
                                 className='flex'
                                 whileTap={{ scale: .5 }}
+                                whileHover={{scale: .9}}
                             >
                                 <FontAwesomeIcon icon={faUser} className='text-2xl light:text-black' />
                             </motion.div>
@@ -119,7 +150,7 @@ function Header() {
                         </button>
                     </div>
                     <div className='flex'>
-                        <button onClick={handleTheme} className='z-99 flex justify-center cursor-pointer items-center text-center rounded-full bg-gray-900 light:bg-cyan-50 w-10 light:hover:border-black hover:border-2'>
+                        <button onClick={handleTheme} className='z-99 flex justify-center cursor-pointer items-center text-center rounded-full bg-gray-900 light:bg-cyan-50 w-10 dark:bg-cyan-300 dark:text-black dark:border-black dark:border-2 light:hover:border-black hover:border-2'>
                             <motion.div
                                 key={theme} // Se asegura de que la animación ocurra al cambiar el ícono
                                 initial={{ opacity: 0, scale: 0.5 }}  // Inicializa con opacidad 0 y escala 0.5
@@ -127,23 +158,25 @@ function Header() {
                                 exit={{ opacity: 0, scale: 0.5 }}     // Vuelve a escala 0.5 y opacidad 0 al desaparecer
                                 transition={{ duration: 0.5 }}
                                 className='flex justify-center items-center'
+                                whileHover={{scale: .9}}
                             >
                                 {theme === 'light' ?
                                     (
-                                        <FontAwesomeIcon icon={faMoon} className='text-2xl light:text-black' />
+                                        <FontAwesomeIcon icon={faMoon} className='text-2xl light:text-black ' />
                                     )
                                     : (
-                                        <FontAwesomeIcon icon={faSun} className='text-2xl light:text-black' />
+                                        <FontAwesomeIcon icon={faSun} className='text-2xl light:text-black ' />
                                     )
                                 }
                             </motion.div>
                         </button>
                     </div>
                     <div className='flex relative'>
-                        <button onClick={handleSettingModal} className='flex justify-center cursor-pointer  items-center text-center rounded-full bg-gray-900 light:bg-cyan-50 w-10 light:hover:border-black hover:border-2'>
+                        <button onClick={handleSettingModal} className='flex justify-center cursor-pointer  items-center text-center rounded-full bg-gray-900 light:bg-cyan-50 w-10 dark:bg-cyan-300 dark:text-black dark:border-black dark:border-2 light:hover:border-black hover:border-2'>
                             <motion.div
                                 className='flex'
                                 whileTap={{ rotate: 360 }}
+                                whileHover={{scale: .9}}
                             >
                                 <FontAwesomeIcon icon={faGear} className='text-2xl light:text-black' />
                             </motion.div>
@@ -156,7 +189,7 @@ function Header() {
                                         exit={{ opacity: 0 }}
                                         transition={{ duration: 0.2 }}
                                     >
-                                        <SettingsModal />
+                                        <SettingsModal setLangsOpen={setLangsOpen} setContentFilterOpen={setContentFilterOpen} setThemesOpen={setThemesOpen} />
                                     </motion.div>
                                 )}
                             </AnimatePresence>

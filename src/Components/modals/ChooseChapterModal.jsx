@@ -70,16 +70,16 @@ function ChooseChapterModal({ mangaId, setModalOpen }) {
             />
 
             <motion.div
-                className="bg-slate-900 light:bg-amber-200 rounded-lg py-2 px-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-999"
+                className="bg-slate-900 light:bg-amber-200 dark:bg-stone-900 dark:border-y-2 dark:border-cyan-300  rounded-lg py-2 px-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-999"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isExiting ? { opacity: 0, scale: 0 } : { opacity: 1, scale: 1 }} // Cambia según `isExiting`
                 transition={{ duration: 0.3 }}
             >
-                <header className="flex justify-between items-center border-b-[0.5px] light:border-black border-slate-700 mb-2">
+                <header className="flex justify-between items-center border-b-[0.5px] light:border-black dark:border-neutral-600 border-slate-700 mb-2">
                     <h1 className="text-xl light:text-black">Seleccione un grupo</h1>
                     <button
                         onClick={handleClose} // Cambia el estado para cerrar el modal
-                        className="flex justify-center cursor-pointer items-center text-center rounded-full py-1 px-2 light:hover:bg-amber-100 hover:bg-slate-700"
+                        className="flex justify-center cursor-pointer items-center text-center rounded-full py-1 px-2 light:hover:bg-amber-100 dark:hover:bg-neutral-600 hover:bg-slate-700"
                     >
                         <FontAwesomeIcon icon={faClose} className="text-lg light:text-black" />
                     </button>
@@ -92,7 +92,7 @@ function ChooseChapterModal({ mangaId, setModalOpen }) {
                         <div>
                             {chapters?.map((m, index) => (
                                 <Link key={index} to={`/chapter/${mangaId}/${m.id}/${m.attributes.translatedLanguage}`}>
-                                    <div className="w-140 flex justify-between items-center mt-1 bg-slate-600 light:bg-amber-100 p-1 rounded-lg light:hover:bg-amber-50 hover:bg-slate-500 cursor-pointer">
+                                    <div className="w-140 flex justify-between items-center mt-1 bg-slate-600 light:bg-amber-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 p-1 rounded-lg light:hover:bg-amber-50 hover:bg-slate-500 cursor-pointer">
                                         <div>
                                             <div className="flex items-center">
                                                 <img

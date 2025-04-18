@@ -23,9 +23,9 @@ const getFlagUrl = (lang) => {
 function LatestUpdatesCard({ chapters = [] }) {
 
     return (
-        <div className="grid xl:grid-cols-1 md:grid-cols-4 lg:grid-cols-3 gap-2 pl-2 pt-2 w-full border-slate-600 light:border-black xl:border-l-1 xl:h-200 scrollbar overflow-y-scroll scrollable-menu">
+        <div className="grid xl:grid-cols-1 md:grid-cols-4 lg:grid-cols-3 gap-2 pl-2 pt-2 w-full border-slate-600 dark:border-cyan-300 light:border-black xl:border-l-1 xl:h-200 scrollbar overflow-y-scroll scrollable-menu">
             {chapters?.map((chapter, index) => (
-                <div key={index} className="3xl:flex xl:flex lg:flex text-xs cursor-pointer light:bg-amber-100 light:hover:bg-amber-50 hover:bg-slate-800 rounded-lg">
+                <div key={index} className="3xl:flex xl:flex lg:flex text-xs cursor-pointer bg-slate-800 light:bg-amber-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 light:hover:bg-amber-50 hover:bg-slate-700 rounded-lg">
                     <div className="">
                         <img src={chapter.coverUrl} alt="" className="rounded-xl 3xl:w-20 3xl:h-[85px] 2xl:w-20 2xl:h-25 xl:w-20 xl:h-[85px] md:w-20 md:h-[95px] object-cover object-center" />
                     </div>

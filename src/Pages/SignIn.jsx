@@ -11,7 +11,7 @@ function SignIn() {
             </aside>
             <div className="xl:mx-15 lg:mx-45">
                 <Link to={'/'}>
-                    <FontAwesomeIcon icon={faArrowLeft} className="text-2xl font-bold mb-3 bg-slate-700 light:bg-cyan-50 rounded-full p-2 hover:bg-slate-600 light:hover:bg-cyan-100 light:text-black" />
+                    <FontAwesomeIcon icon={faArrowLeft} className="text-2xl font-bold mb-3 bg-slate-700 light:bg-cyan-100 dark:bg-cyan-300 dark:text-black rounded-full p-2 hover:bg-slate-600 dark:hover:bg-cyan-200 light:hover:bg-cyan-50 light:text-black" />
                 </Link>
                 <header>
                     <h1 className="text-2xl font-bold light:text-black">¿Cómo registrarse en MangaFox?</h1>

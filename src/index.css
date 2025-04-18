@@ -8,6 +8,7 @@
 }
 
 @custom-variant light (&:where(.light, .light *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 ::-webkit-scrollbar-thumb {
   border-radius: 6px;
@@ -31,6 +32,7 @@ body {
   @apply light:bg-white;
   @apply light:text-black;
   @apply text-white;
+  @apply dark:bg-stone-900;
 }
 
 .slick-dots li.slick-active button:before {
@@ -40,6 +42,11 @@ body {
 
 .slick-dots li button:before {
   color: #bbb5b5 !important;
+}
+
+.dark .slick-dots li.slick-active button:before {
+  color: rgb(121, 235, 235) !important;
+  scale: 2;
 }
 
 
