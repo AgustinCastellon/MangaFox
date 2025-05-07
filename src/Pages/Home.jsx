@@ -105,7 +105,7 @@ function Home() {
                 <MangaListSlider topMangas={topMangas} />
                 <div className="flex items-center justify-between  mb-4">
                     <h1 className='font-medium md:text-2xl 2xl:text-3xl light:text-black selection:bg-cyan-300'>Ultimos Lanzamientos</h1>
-                    <Link to='/mangas?filter=Latest Releases' className="flex">
+                    <Link to='/mangas?filter=Ultimos-Lanzamientos' className="flex">
                         <FontAwesomeIcon icon={faArrowRight} className="text-2xl light:text-black" />
                     </Link>
                 </div>

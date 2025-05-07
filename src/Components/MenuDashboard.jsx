@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook, faCircleInfo, faClock, faFilter, faHeart, faList, faMessage, faShuffle, faTag } from "@fortawesome/free-solid-svg-icons";
 import { faDiscord, faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
 
 function MenuDashboard() {
     return (
@@ -8,14 +9,18 @@ function MenuDashboard() {
             <div className="mx-2 my-2 lg:justify-center lg:items-center xl:block xl:border-b-1 border-slate-600 dark:border-neutral-600 light:border-amber-200">
                 <h1 className="lg:text-lg xl:mb-3 font-bold xl:text-xl light:text-black">Titulos</h1>
                 <ul className="flex flex-col xl:gap-3 lg:gap-1 justify-center text-gray-300 light:text-gray-600">
-                    <l1 className="flex py-1 px-2 2xl:mr-4 items-center rounded-sm hover:bg-slate-700 light:hover:bg-amber-50 dark:hover:bg-neutral-700 cursor-pointer">
-                        <FontAwesomeIcon icon={faFilter} className="pr-1 " />
-                        <h2 className="xl:text-sm lg:text-xs">Busqueda Avanzada</h2>
-                    </l1>
-                    <l1 className="flex py-1 px-2 2xl:mr-4 hover:bg-slate-700 light:hover:bg-amber-50 dark:hover:bg-neutral-700 items-center rounded-sm cursor-pointer">
-                        <FontAwesomeIcon icon={faList} className="pr-2 " />
-                        <h2 className="xl:text-sm lg:text-xs">Lista Completa</h2>
-                    </l1>
+                    <Link to={'/mangas'}>
+                        <l1 className="flex py-1 px-2 2xl:mr-4 items-center rounded-sm hover:bg-slate-700 light:hover:bg-amber-50 dark:hover:bg-neutral-700 cursor-pointer">
+                            <FontAwesomeIcon icon={faFilter} className="pr-1 " />
+                            <h2 className="xl:text-sm lg:text-xs">Busqueda Avanzada</h2>
+                        </l1>
+                    </Link>
+                    <Link to={'/mangas?filter=Todos-los mangas'}>
+                        <l1 className="flex py-1 px-2 2xl:mr-4 hover:bg-slate-700 light:hover:bg-amber-50 dark:hover:bg-neutral-700 items-center rounded-sm cursor-pointer">
+                            <FontAwesomeIcon icon={faList} className="pr-2 " />
+                            <h2 className="xl:text-sm lg:text-xs">Lista Completa</h2>
+                        </l1>
+                    </Link>
                     <l1 className="flex py-1 px-2 2xl:mr-4 hover:bg-slate-700 light:hover:bg-amber-50 dark:hover:bg-neutral-700 items-center rounded-sm cursor-pointer">
                         <FontAwesomeIcon icon={faBook} className="pr-2 " />
                         <h2 className="xl:text-sm lg:text-xs">Lo Mas Nuevo</h2>

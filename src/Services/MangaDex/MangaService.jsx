@@ -265,3 +265,78 @@ export const findMangaByTitle = async (title) => {
         return [];
     }
 }
+
+export const getTags = async () => {
+    try {
+        const response = await axios.get(`${BASE_URL}/manga/tag`
+        )
+        const data = response.data.data;
+        const genres = data.filter(f => f.attributes.group === "genre")
+            .map(m => m.attributes.name.en) || "vacio"
+        const format = data.filter(f => f.attributes.group === "format")
+            .map(m => m.attributes.name.en) || "vacio"
+        const theme = data.filter(f => f.attributes.group === "theme")
+            .map(m => m.attributes.name.en) || "vacio"
+        const content = data.filter(f => f.attributes.group === "content")
+            .map(m => m.attributes.name.en) || "vacio"
+        return {
+            genres: genres,
+            format: format,
+            theme: theme,
+            content: content
+        }
+    } catch (error) {
+        return console.error('No se encontraron tags: ', error);
+    }
+}
+
+export const getMangasByFilter = async (limit, offset = 0, includedTagNames, filtersCDS, sortName, sortValue) => {
+    try {
+        const tags = await axios.get(`${BASE_URL}/manga/tag`)
+
+        const includedTagIDs = tags.data.data
+            .filter(tag => includedTagNames.includeTag.includes(tag.attributes.name.en))
+            .map(tag => tag.id);
+
+        const excludedTagIDs = tags.data.data
+            .filter(tag => includedTagNames.excludeTag.includes(tag.attributes.name.en))
+            .map(tag => tag.id);
+
+        const demographic = filtersCDS.demographic;
+        const contentRating = filtersCDS.contentRating;
+        const status = filtersCDS.status;
+
+        const response = await axios.get(`${BASE_URL}/manga`, {
+            params: {
+                limit: limit,
+                offset: offset,
+                "includes[]": ["cover_art", "author"],
+                'includedTags': includedTagIDs,
+                'excludedTags': excludedTagIDs,
+                includedTagsMode: includedTagNames.incTagMode,
+                excludedTagsMode: includedTagNames.excTagMode,
+                publicationDemographic: demographic,
+                contentRating: contentRating,
+                status: status,
+                [`order[${sortName}]`]: sortValue
+            }
+        })
+
+        return {
+            mangas: response.data.data.map(manga => ({
+                id: manga.id,
+                title: manga.attributes.title.en || Object.values(manga.attributes.title)[0],
+                description: manga.attributes.description.es || manga.attributes.description.en || Object.values(manga.attributes.title)[0],
+                coverUrl: manga.relationships.find(rel => rel.type === "cover_art") ? getCoverUrl(manga.id, manga.relationships.find(rel => rel.type === "cover_art").attributes.fileName) : null,
+                year: manga.attributes.year,
+                status: manga.attributes.status,
+                author: manga.relationships.find(f => f.type === "author")?.attributes.name || "holas"
+            })),
+            total: response.data.total
+        }
+
+    } catch (error) {
+        console.error('Error al filtrar mangas', error);
+    }
+
+}

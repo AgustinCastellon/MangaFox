@@ -5,6 +5,25 @@
 @theme {
   --font-jost: 'Jost', sans-serif;
   --breakpoint-3xl: 110rem;
+  /*theme dracula*/
+  --color-dracula-50: #f8f8f2;
+  --color-dracula-100: #e9e9e4;
+  --color-dracula-200: #d2d2ca;
+  --color-dracula-300: #bcbcb1;
+  --color-dracula-400: #a5a598;
+  --color-dracula-500: #6272a4;
+  --color-dracula-600: #44475a;
+  --color-dracula-700: #282a36;
+  --color-dracula-800: #1e1f29;
+  --color-dracula-900: #14151e;
+  /*accent colors*/
+  --color-dracula-pink: #ff79c6;
+  --color-dracula-purple: #bd93f9;
+  --color-dracula-cyan: #8be9fd;
+  --color-dracula-green: #50fa7b;
+  --color-dracula-orange: #ffb86c;
+  --color-dracula-red: #ff5555;
+  --color-dracula-yellow: #f1fa8c;
 }
 
 @custom-variant light (&:where(.light, .light *));
@@ -17,6 +36,11 @@
 
 .scrollable-menu::-webkit-scrollbar {
   width: 2px;
+  /* Ajusta el ancho del scrollbar */
+}
+
+.scrollable-filter-menu::-webkit-scrollbar {
+  width: 7px;
   /* Ajusta el ancho del scrollbar */
 }
 

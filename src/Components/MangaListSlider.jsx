@@ -13,7 +13,6 @@ function MangaListSlider({ topMangas }) {
     const [activeSlide, setActiveSlide] = useState(0);
     const [mangaId, setMangaId] = useState(null);
     const [modalPosition, setModalPosition] = useState(null)
-
     const handleMouseEnter = (id, event) => {
         if (!event) return; // Previene errores si el evento no está disponible
 
