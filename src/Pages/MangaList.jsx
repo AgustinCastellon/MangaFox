@@ -91,7 +91,7 @@ function MangaList() {
         fetchMangaFilter();
 
 
-    }, [filter, page, allTags, filtersCDS]);
+    }, [filter, page, allTags, filtersCDS, sortName, sortValue]);
 
     const handlePageChange = (newPage) => {
         const currentParams = Object.fromEntries(searchParams.entries());
@@ -120,16 +120,16 @@ function MangaList() {
         <div className="xl:w-[1200px] mx-auto px-4">
             <h1 className="text-2xl font-bold light:text-black">Busqueda Avanzada</h1>
             <div className="flex mb-5 gap-3">
-                <div className="flex items-center text-xl border-2 rounded-lg bg-slate-700 dark:bg-cyan-300 border-slate-700 light:bg-black dark:border-cyan-300 light:border-black grow">
+                <div className="flex items-center text-xl border-2 rounded-lg bg-slate-700 dracula:bg-dracula-500 dracula:border-dracula-500 dark:bg-cyan-300 border-slate-700 light:bg-black dark:border-cyan-300 light:border-black grow">
                     <div className="flex h-full justify-center items-center mx-1">
-                        <FontAwesomeIcon icon={faSearch} className="text-white dark:text-neutral-800 light:text-white px-1" />
+                        <FontAwesomeIcon icon={faSearch} className="text-white dark:text-neutral-800 light:text-white dracula:text-dracula-purple px-1" />
                     </div>
-                    <input type="text" placeholder="Buscar..." className="bg-gray-900 dark:bg-neutral-800 light:bg-cyan-50 w-full rounded-r-lg outline-none p-1 placeholder-gray-500 light:text-black" />
+                    <input type="text" placeholder="Buscar..." className="bg-gray-900 dracula:placeholder-dracula-purple dracula:bg-dracula-700 dark:bg-neutral-800 light:bg-cyan-50 w-full rounded-r-lg outline-none p-1 placeholder-gray-500 light:text-black" />
                 </div>
                 {!advancedSearchOpen ? (
                     <button
                         onClick={handleSearchOpen}
-                        className="cursor-pointer flex items-center rounded-lg px-8 gap-1 font-bold bg-slate-700 text-white dark:bg-cyan-300 hover:bg-slate-600 dark:hover:bg-cyan-400 light:bg-black light:text-white light:hover:bg-gray-800 dark:text-neutral-800"
+                        className="cursor-pointer flex items-center rounded-lg px-8 gap-1 font-bold bg-slate-700 text-white dracula:bg-dracula-500 dracula:hover:bg-dracula-400 dark:bg-cyan-300 hover:bg-slate-600 dark:hover:bg-cyan-400 light:bg-black light:text-white light:hover:bg-gray-800 dark:text-neutral-800"
                     >
                         <FontAwesomeIcon icon={faChevronDown} />
                         Mostrar Filtros
@@ -137,7 +137,7 @@ function MangaList() {
                 ) : (
                     <button
                         onClick={handleSearchOpen}
-                        className="cursor-pointer flex items-center rounded-lg px-8 gap-1 font-bold bg-slate-700 text-white dark:bg-cyan-300 light:bg-black light:text-white light:hover:bg-gray-800 hover:bg-slate-600 dark:hover:bg-cyan-400 dark:text-neutral-800"
+                        className="cursor-pointer flex items-center rounded-lg px-8 gap-1 font-bold bg-slate-700 text-white dracula:bg-dracula-500 dracula:hover:bg-dracula-400 dark:bg-cyan-300 light:bg-black light:text-white light:hover:bg-gray-800 hover:bg-slate-600 dark:hover:bg-cyan-400 dark:text-neutral-800"
                     >
                         <FontAwesomeIcon icon={faChevronUp} />
                         Ocultar Filtros
@@ -164,12 +164,12 @@ function MangaList() {
                     className="flex justify-end gap-2 ">
                     <button
                         onClick={ResetParams}
-                        className="cursor-pointer rounded-sm px-2 py-1 bg-red-700 light:bg-red-200 light:hover:bg-red-300 hover:bg-red-800 light:border light:border-red-500 light:text-black">
+                        className="cursor-pointer rounded-sm px-2 py-1 bg-red-700 light:bg-red-200 light:hover:bg-red-300 hover:bg-red-800 light:border light:border-red-500 light:text-black dracula:bg-dracula-red">
                         Resetar Parametros
                     </button>
                     <button
                         onClick={sendFilters}
-                        className="cursor-pointer rounded-sm px-8 py-1 font-bold bg-slate-700 dark:bg-cyan-300 light:bg-black light:text-white light:hover:bg-gray-800 dark:text-neutral-800 hover:bg-slate-600 dark:hover:bg-cyan-400">
+                        className="cursor-pointer rounded-sm px-8 py-1 font-bold bg-slate-700 dark:bg-cyan-300 light:bg-black light:text-white light:hover:bg-gray-800 dark:text-neutral-800 hover:bg-slate-600 dark:hover:bg-cyan-400 dracula:bg-dracula-green dracula:text-black dracula:hover:bg-dracula-green">
                         Buscar
                     </button>
                 </div>

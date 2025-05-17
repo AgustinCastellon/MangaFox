@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <div className='font-jost'>
+      <div className='font-jost '>
         <div className='mb-25'>
 
         <Header className=""/>

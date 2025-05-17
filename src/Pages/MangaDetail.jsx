@@ -110,7 +110,7 @@ function MangaDetail() {
                     {!manga?.coverUrl ? (
                         <CoverDetailLoader />
                     ) : (
-                        <img src={`${manga?.coverUrl}`} alt={manga?.coverUrl} className="h-64 w-46 rounded-xl object-cover outline-4 outline-offset-0 light:outline-cyan-100 dark:outline-cyan-300 outline-slate-700 outline-solid " />
+                        <img src={`${manga?.coverUrl}`} alt={manga?.coverUrl} className="h-64 w-46 rounded-xl object-cover outline-4 outline-offset-0 light:outline-cyan-100 dark:outline-cyan-300 dracula:outline-dracula-500   outline-slate-700 outline-solid " />
                     )}
                 </div>
                 <div className="absolute left-65 mt-2 h-45 flex flex-col justify-between">
@@ -127,14 +127,14 @@ function MangaDetail() {
                         )
                         )}
                         {manga?.genres?.map((f, index) => (
-                            <h1 className="bg-slate-800 light:bg-cyan-100 dark:bg-neutral-700 light:text-black px-2 text-[10px] font-bold rounded-sm" key={index}>{f.toUpperCase()}</h1>
+                            <h1 className="bg-slate-800 light:bg-cyan-100 dark:bg-neutral-700 dracula:bg-dracula-500 light:text-black px-2 text-[10px] font-bold rounded-sm" key={index}>{f.toUpperCase()}</h1>
                         )
                         )}
 
                     </div>
                     <div className="flex gap-2">
-                        <button onClick={() => setModalFirstChapter(true)} className="bg-slate-700 light:bg-amber-200 dark:bg-cyan-300 dark:text-black dark:hover:bg-cyan-200 light:text-black light:hover:bg-amber-100 font-bold px-4 py-2 rounded-lg text-lg hover:bg-slate-600 cursor-pointer"><FontAwesomeIcon icon={faBookOpen} className="pr-2" />Leer Ahora</button>
-                        <button className="bg-slate-700 light:bg-amber-200 light:text-black light:hover:bg-amber-100 dark:bg-neutral-700 dark:hover:bg-neutral-600 font-bold px-4 py-2 rounded-lg text-lg hover:bg-slate-600 cursor-pointer"><FontAwesomeIcon icon={faList} className="pr-2" />Agregar a la lista</button>
+                        <button onClick={() => setModalFirstChapter(true)} className="bg-slate-700 light:bg-amber-200 dark:bg-cyan-300 dracula:bg-dracula-yellow dracula:text-black dracula:hover:bg-yellow-100 dark:text-black dark:hover:bg-cyan-200 light:text-black light:hover:bg-amber-100 font-bold px-4 py-2 rounded-lg text-lg hover:bg-slate-600 cursor-pointer"><FontAwesomeIcon icon={faBookOpen} className="pr-2" />Leer Ahora</button>
+                        <button className="bg-slate-700 light:bg-amber-200 light:text-black light:hover:bg-amber-100 dark:bg-neutral-700 dark:hover:bg-neutral-600 font-bold px-4 py-2 rounded-lg text-lg dracula:bg-dracula-500 dracula:hover:bg-dracula-400 hover:bg-slate-600 cursor-pointer"><FontAwesomeIcon icon={faList} className="pr-2" />Agregar a la lista</button>
                     </div>
                 </div>
             </div>
@@ -146,7 +146,7 @@ function MangaDetail() {
                             <li>
                                 <button
                                     onClick={() => handleClickModal("chapter")}
-                                    className={`${activeModal === 'chapter' ? ' bg-slate-700 light:bg-amber-200 dark:bg-neutral-800 dark:border-neutral-600 light:border-black light:text-black border-slate-500' : 'text-gray-400 dark:text-zinc-500 light:text-gray-600'}  border-slate-500 dark:border-neutral-600 rounded-l-lg cursor-pointer border-1 px-5`}
+                                    className={`${activeModal === 'chapter' ? ' bg-slate-700 light:bg-amber-200 dark:bg-neutral-800 dark:border-neutral-600 light:border-black light:text-black border-slate-500 dracula:bg-dracula-purple' : 'text-gray-400 dark:text-zinc-500 light:text-gray-600'}  border-slate-500 dark:border-neutral-600 rounded-l-lg cursor-pointer border-1 px-5`}
                                 >
                                     Capitulos
                                 </button>
@@ -154,7 +154,7 @@ function MangaDetail() {
                             <li>
                                 <button
                                     onClick={() => handleClickModal("detail")}
-                                    className={`${activeModal === 'detail' ? ' bg-slate-700 light:bg-amber-200 dark:bg-neutral-800 dark:border-neutral-600 light:border-black light:text-black border-slate-500' : 'text-gray-400 dark:text-zinc-500 light:text-gray-600'} border-slate-500 dark:border-neutral-600 cursor-pointer border-1 px-5`}
+                                    className={`${activeModal === 'detail' ? ' bg-slate-700 light:bg-amber-200 dark:bg-neutral-800 dark:border-neutral-600 light:border-black light:text-black border-slate-500 dracula:bg-dracula-purple' : 'text-gray-400 dark:text-zinc-500 light:text-gray-600'} border-slate-500 dark:border-neutral-600 cursor-pointer border-1 px-5`}
                                 >
                                     Detalle
                                 </button>
@@ -162,7 +162,7 @@ function MangaDetail() {
                             <li>
                                 <button
                                     onClick={() => handleClickModal("art")}
-                                    className={`${activeModal === 'art' ? ' bg-slate-700 light:bg-amber-200 dark:bg-neutral-800 dark:border-neutral-600 light:border-black light:text-black border-slate-500' : 'text-gray-400 dark:text-zinc-500 light:text-gray-600'} border-slate-500 dark:border-neutral-600 rounded-r-lg cursor-pointer border-1 px-5`}
+                                    className={`${activeModal === 'art' ? ' bg-slate-700 light:bg-amber-200 dark:bg-neutral-800 dark:border-neutral-600 light:border-black light:text-black border-slate-500 dracula:bg-dracula-purple' : 'text-gray-400 dark:text-zinc-500 light:text-gray-600'} border-slate-500 dark:border-neutral-600 rounded-r-lg cursor-pointer border-1 px-5`}
                                 >
                                     Arte
                                 </button>
@@ -170,25 +170,25 @@ function MangaDetail() {
                         </ul>
                     </nav>
                 </header>
-                <section className={`${activeModal === 'chapter' ? 'visible' : 'hidden'} mx-9 bg-slate-700 dark:bg-neutral-800 light:bg-amber-200 rounded-lg p-5`}>
+                <section className={`${activeModal === 'chapter' ? 'visible' : 'hidden'} mx-9 bg-slate-700 dark:bg-neutral-800 light:bg-amber-200 dracula:bg-dracula-700 rounded-lg p-5`}>
                     <div >
                         <div className="flex justify-between items-center mb-5">
                             <div className="flex">
-                                <label htmlFor="lang" className="bg-slate-200 light:bg-cyan-100 dark:bg-neutral-200 text-gray-900 px-2 rounded-l-sm border-2 light:border-cyan-100 border-slate-200 font-bold">IDIOMAS DISPONIBLES</label>
-                                <select name="lang" id="lang" onChange={handeChangeLang} className="bg-slate-900 light:bg-white dark:bg-cyan-300 dark:text-black light:text-black text-slate-200 text-xs  w-35 px-2 rounded-r-sm border-2 light:border-cyan-100 border-slate-200">
+                                <label htmlFor="lang" className="bg-slate-200 light:bg-cyan-100 dark:bg-neutral-200 text-gray-900 px-2 rounded-l-sm border-2 light:border-cyan-100 border-slate-200 font-bold dracula:bg-dracula-500 dracula:border-dracula-500 dracula:text-white">IDIOMAS DISPONIBLES</label>
+                                <select name="lang" id="lang" onChange={handeChangeLang} className="bg-slate-900 light:bg-white dark:bg-cyan-300 dark:text-black light:text-black dracula:bg-dracula-800 text-slate-200 text-xs dracula:border-dracula-500 w-35 px-2 rounded-r-sm border-2 light:border-cyan-100 border-slate-200">
                                     <option value="" disabled selected>Elegir...</option>
                                     {manga?.attributes?.availableTranslatedLanguages?.map((l, index) => (
                                         <option key={index} value={l}>{displayNames.of(`${l}`).toUpperCase()}</option>
                                     ))}
                                 </select>
                             </div>
-                            <button className="bg-slate-200 light:bg-cyan-100 text-gray-900 rounded-sm border-2 font-bold px-2 h-8 cursor-pointer light:hover:bg-cyan-50 light:hover:text-black hover:bg-gray-900 hover:text-slate-200">
+                            <button className="bg-slate-200 light:bg-cyan-100 text-gray-900 rounded-sm border-2 font-bold px-2 h-8 cursor-pointer light:hover:bg-cyan-50 light:hover:text-black hover:bg-gray-900 hover:text-slate-200 dracula:bg-dracula-500 dracula:border-dracula-500 dracula:text-white dracula:hover:bg-dracula-800">
                                 <FontAwesomeIcon icon={faUpload} className="pr-1" />UPLOAD CHAPTER
                             </button>
                         </div>
                         {chapters.map((c, index) => (
                             <Link key={index} to={`/chapter/${id}/${c.id}/${lang}`}>
-                                <article className="bg-slate-600 dark:bg-neutral-700 light:bg-amber-100 flex justify-between rounded-xl px-2 py-3 mb-5 cursor-pointer light:hover:bg-amber-50 dark:hover:bg-neutral-600 hover:bg-slate-500">
+                                <article className="bg-slate-600 dark:bg-neutral-700 light:bg-amber-100 dracula:bg-dracula-600 dracula:hover:bg-dracula-800 flex justify-between rounded-xl px-2 py-3 mb-5 cursor-pointer light:hover:bg-amber-50 dark:hover:bg-neutral-600 hover:bg-slate-500">
                                     <h1 className="light:text-black">Volumen {c?.attributes?.volume}, Capitulo {c?.attributes?.chapter} - {c?.attributes?.title}</h1>
                                     <span className="text-gray-400 light:text-gray-600">
                                         <FontAwesomeIcon icon={faClock} className="pr-1" />
@@ -205,7 +205,7 @@ function MangaDetail() {
                         />
                     </div>
                 </section>
-                <section className={`${activeModal === 'detail' ? 'visible' : 'hidden'} flex mx-9 bg-slate-700 dark:bg-neutral-800 light:bg-amber-200 light:text-black rounded-lg p-5`}>
+                <section className={`${activeModal === 'detail' ? 'visible' : 'hidden'} flex mx-9 bg-slate-700 dark:bg-neutral-800 light:bg-amber-200 light:text-black dracula:bg-dracula-700 rounded-lg p-5`}>
                     <div className="w-2/5">
                         <ul className="">
                             <li className="flex justify-between mb-3 border-b-1 border-slate-600 dark:border-neutral-600">
@@ -255,12 +255,12 @@ function MangaDetail() {
                         </ul>
                     </div>
                     <div className="w-3/5">
-                        <div className="bg-slate-500 light:bg-amber-100 dark:bg-neutral-700 mx-2 rounded-lg">
+                        <div className="bg-slate-500 light:bg-amber-100 dark:bg-neutral-700 dracula:bg-dracula-600 mx-2 rounded-lg">
                             <div className="ml-2 mb-2">
                                 <h1 className="font-bold">Genres</h1>
                                 <div className="flex flex-wrap  gap-1">
                                     {manga?.genres?.map((g, index) => (
-                                        <span key={index} className="text-gray-200 light:bg-cyan-100 light:text-black text-xs font-semibold bg-slate-600 dark:bg-neutral-500 rounded-sm px-1">{g}</span>))}
+                                        <span key={index} className="text-gray-200 light:bg-cyan-100 light:text-black text-xs font-semibold bg-slate-600 dark:bg-neutral-500 dracula:bg-dracula-800 rounded-sm px-1">{g}</span>))}
                                 </div>
                             </div>
                             <div className="ml-2 pb-2">
@@ -268,7 +268,7 @@ function MangaDetail() {
                                 <div className="flex flex-wrap  gap-1">
                                     {manga?.content?.length !== 0 ?
                                         manga?.content?.map((c, index) => (
-                                            <span key={index} className="text-gray-200 light:bg-cyan-100 light:text-black text-xs font-semibold bg-slate-600 dark:bg-neutral-500 rounded-sm px-1">{c}</span>))
+                                            <span key={index} className="text-gray-200 light:bg-cyan-100 light:text-black text-xs font-semibold bg-slate-600 dark:bg-neutral-500 dracula:bg-dracula-800 rounded-sm px-1">{c}</span>))
                                         :
                                         <p className="text-gray-300 text-left text-xs">No content available.</p>
                                     }
@@ -278,21 +278,21 @@ function MangaDetail() {
                                 <h1 className="font-bold">Themes</h1>
                                 <div className="flex flex-wrap  gap-1">
                                     {manga?.themes?.map((t, index) => (
-                                        <span key={index} className="text-gray-200 light:bg-cyan-100 light:text-black text-xs font-semibold bg-slate-600 dark:bg-neutral-500 rounded-sm px-1">{t}</span>))}
+                                        <span key={index} className="text-gray-200 light:bg-cyan-100 light:text-black text-xs font-semibold bg-slate-600 dark:bg-neutral-500 dracula:bg-dracula-800 rounded-sm px-1">{t}</span>))}
                                 </div>
                             </div>
                             <div className="ml-2 pb-2">
                                 <h1 className="font-bold">Demographic</h1>
-                                <span className="text-gray-200 light:bg-cyan-100 light:text-black text-xs font-semibold bg-slate-600 dark:bg-neutral-500 rounded-sm px-1">{manga?.attributes?.publicationDemographic}</span>
+                                <span className="text-gray-200 light:bg-cyan-100 light:text-black text-xs font-semibold bg-slate-600 dark:bg-neutral-500 dracula:bg-dracula-800 rounded-sm px-1">{manga?.attributes?.publicationDemographic}</span>
                             </div>
                             <div className="ml-2 pb-2">
                                 <h1 className="font-bold">Content Raiting</h1>
-                                <span className="text-gray-200 light:bg-cyan-100 light:text-black text-xs font-semibold bg-slate-600 dark:bg-neutral-500 rounded-sm px-1">{manga?.attributes?.contentRating}</span>
+                                <span className="text-gray-200 light:bg-cyan-100 light:text-black text-xs font-semibold bg-slate-600 dark:bg-neutral-500 dracula:bg-dracula-800 rounded-sm px-1">{manga?.attributes?.contentRating}</span>
                             </div>
                         </div>
                     </div>
                 </section>
-                <section className={`${activeModal === 'art' ? 'visible' : 'hidden'} mx-9 bg-slate-700 light:bg-amber-200 dark:bg-neutral-800 rounded-lg p-5 flex flex-wrap gap-2`}>
+                <section className={`${activeModal === 'art' ? 'visible' : 'hidden'} mx-9 bg-slate-700 light:bg-amber-200 dark:bg-neutral-800 dracula:bg-dracula-700 rounded-lg p-5 flex flex-wrap gap-2`}>
                     {allCovers?.map((c, index) => (
                         <div key={index} className="relative group cursor-pointer">
                             <FontAwesomeIcon icon={faExpand} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl z-20 opacity-0 transition-all duration-300 group-hover:opacity-100" />

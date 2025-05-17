@@ -38,11 +38,11 @@ function Pagination({ totalItems, itemsPerPage, currentPage, onPageChange }) {
     };
 
     return (
-        <div className="flex justify-center items-center space-x-2 mt-4">
+        <div className="flex justify-center items-center space-x-2 mt-4 mb-5">
             <button 
                 onClick={() => goToPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`px-3 py-2 rounded ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : "hover:bg-slate-500 dark:hover:bg-cyan-200 dark:hover:text-black light:hover:bg-cyan-200"}`}
+                className={`px-3 py-2 rounded ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : "hover:bg-slate-500 dracula:text-dracula-yellow dracula:hover:bg-dracula-500 dark:hover:bg-cyan-200 dark:hover:text-black light:hover:bg-cyan-200"}`}
             >
                 <FontAwesomeIcon icon={faChevronLeft} className="light:text-black"/>
             </button>
@@ -51,7 +51,7 @@ function Pagination({ totalItems, itemsPerPage, currentPage, onPageChange }) {
                 <button 
                     key={index}
                     onClick={() => goToPage(page)}
-                    className={`px-3 py-2 rounded ${currentPage === page ? "bg-slate-600 text-white light:bg-cyan-200 dark:bg-cyan-300 dark:text-black light:text-black" : "hover:bg-slate-500 dark:hover:bg-cyan-200 dark:hover:text-black light:hover:bg-cyan-100 light:text-black"}`}
+                    className={`px-3 py-2 rounded ${currentPage === page ? "bg-slate-600 text-white dracula:bg-dracula-purple light:bg-cyan-200 dark:bg-cyan-300 dark:text-black light:text-black" : "hover:bg-slate-500 dracula:hover:bg-dracula-400 dark:hover:bg-cyan-200 dark:hover:text-black light:hover:bg-cyan-100 light:text-black"}`}
                     disabled={page === "..."}
                 >
                     {page}
@@ -61,7 +61,7 @@ function Pagination({ totalItems, itemsPerPage, currentPage, onPageChange }) {
             <button 
                 onClick={() => goToPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className={`px-3 py-2 rounded ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : "hover:bg-slate-500 dark:hover:bg-cyan-200 dark:hover:text-black light:hover:bg-cyan-200"}`}
+                className={`px-3 py-2 rounded ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : "hover:bg-slate-500 dracula:text-dracula-yellow   dracula:hover:bg-dracula-500 dark:hover:bg-cyan-200 dark:hover:text-black light:hover:bg-cyan-200"}`}
             >
                 <FontAwesomeIcon icon={faChevronRight} className="light:text-black"/>
             </button>

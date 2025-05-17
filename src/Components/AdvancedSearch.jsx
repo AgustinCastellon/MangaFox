@@ -66,7 +66,7 @@ function AdvancedSearch({
         } else if (excludeTag.includes(tag)) {
             return 'bg-red-300 text-black'
         } else {
-            return 'bg-slate-600 dark:bg-neutral-700 light:bg-cyan-50 light:text-black'
+            return 'bg-slate-600 dark:bg-neutral-700 light:bg-cyan-50 light:text-black dracula:bg-dracula-500'
         }
     }
 
@@ -113,11 +113,11 @@ function AdvancedSearch({
 
     return (
         <div className="grid grid-cols-4 gap-3">
-            <div className="relative z-99 flex flex-col">
-                <label htmlFor="" className="text-neutral-400 light:text-neutral-600">Ordenar Por {sortValue !== undefined && (sortValue === "asc" ? "[Ascendente]" : "[Descendente]")}</label>
+            <div className="relative z-10 flex flex-col">
+                <label htmlFor="" className="text-neutral-400 light:text-neutral-600 dracula:text-dracula-yellow">Ordenar Por {sortValue !== undefined && (sortValue === "asc" ? "[Ascendente]" : "[Descendente]")}</label>
                 <button
                     onClick={handleSortListOpen}
-                    className="cursor-pointer flex items-center justify-between focus:outline focus:outline-slate-500 dark:focus:outline-cyan-300 light:focus:outline-black text-start bg-slate-800 dark:bg-neutral-700 light:bg-cyan-100 light:text-black rounded-sm p-1">
+                    className="cursor-pointer flex items-center justify-between focus:outline focus:outline-slate-500 dark:focus:outline-cyan-300 light:focus:outline-black text-start bg-slate-800 dark:bg-neutral-700 light:bg-cyan-100 light:text-black dracula:bg-dracula-700 rounded-sm p-1">
                     <span className="ml-1">
                         {sortName ? sortName : "-"}
                     </span>
@@ -128,7 +128,7 @@ function AdvancedSearch({
                         <motion.div initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="absolute top-15 w-full bg-slate-800 dark:bg-neutral-800 light:bg-cyan-100 px-2 py-3"
+                            className="absolute top-15 w-full bg-slate-800 dark:bg-neutral-800 light:bg-cyan-100 dracula:bg-dracula-700 px-2 py-3"
                         >
                             <div className="flex gap-2">
                                 <button
@@ -148,7 +148,7 @@ function AdvancedSearch({
                             {sortList.map((item, index) => (
                                 <label htmlFor={item} key={index} className="flex gap-1 text-lg light:text-black">
                                     <input
-                                        className="w-4 accent-blue-300 light:accent-cyan-300 dark:dark:accent-cyan-300"
+                                        className="w-4 accent-blue-300 light:accent-cyan-300 dark:dark:accent-cyan-300 dracula:accent-dracula-purple"
                                         type="radio"
                                         value={item}
                                         id={item}
@@ -163,14 +163,14 @@ function AdvancedSearch({
                 </AnimatePresence>
             </div>
             <div className="relative z-9 flex flex-col">
-                <label htmlFor="" className="text-neutral-400 light:text-neutral-600">
+                <label htmlFor="" className="text-neutral-400 light:text-neutral-600 dracula:text-dracula-yellow">
                     Filtrar Etiquetas
                     <strong className="text-xs text-green-500">{includeTag.length > 0 && ` +${includeTag.length}`}</strong>
                     <strong className="text-xs text-red-500">{excludeTag.length > 0 && ` +${excludeTag.length}`}</strong>
                 </label>
                 <button
                     onClick={handleTagsOpen}
-                    className="cursor-pointer flex items-center justify-between focus:outline focus:outline-slate-500 dark:focus:outline-cyan-300 light:focus:outline-black text-start bg-slate-800 dark:bg-neutral-700 light:bg-cyan-100 light:text-black rounded-sm p-1" >
+                    className="cursor-pointer flex items-center justify-between focus:outline focus:outline-slate-500 dark:focus:outline-cyan-300 light:focus:outline-black text-start bg-slate-800 dark:bg-neutral-700 light:bg-cyan-100 light:text-black dracula:bg-dracula-700 rounded-sm p-1" >
                     {includeTag.length > 0 || excludeTag.length > 0 ? (
                         <span className="line-clamp-1">
                             <strong className="ml-1 text-green-300 light:text-green-500" >{includeTag != 0 && includeTag.join(` ${incTagMode === 'OR' ? 'o' : 'y'} `)} </strong>
@@ -187,7 +187,7 @@ function AdvancedSearch({
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="absolute top-15 w-190 bg-slate-800 dark:bg-neutral-800 light:bg-cyan-100 p-5 rounded-sm h-130 overflow-y-scroll scrollable-filter-menu scrollbar dark:scrollbar-thumb-cyan-300 light:scrollbar-thumb-cyan-200 scrollbar-thumb-slate-400">
+                            className="absolute top-15 w-190 bg-slate-800 dark:bg-neutral-800 light:bg-cyan-100 dracula:bg-dracula-700 p-5 rounded-sm h-130 overflow-y-scroll scrollable-filter-menu scrollbar dark:scrollbar-thumb-cyan-300 light:scrollbar-thumb-cyan-200 scrollbar-thumb-slate-400">
                             <div>
                                 <span className="text-sm light:text-black">Haz click una vez si quieres <strong className="text-green-300 light:text-green-600">incluir un tag</strong>,
                                     clickea dos veces si quieres <strong className="text-red-300 light:text-red-600">excluir un tag. </strong>
@@ -195,7 +195,7 @@ function AdvancedSearch({
                                 <button className="text-xs underline text-neutral-300 light:text-neutral-600 cursor-pointer">Ocultar</button>
                             </div>
                             <div className="flex justify-end">
-                                <button onClick={handleClickResetTag} className="mt-1 px-3 rounded-xs cursor-pointer bg-red-500 hover:bg-red-600">Limpiar</button>
+                                <button onClick={handleClickResetTag} className="mt-1 px-3 rounded-xs cursor-pointer bg-red-500 hover:bg-red-600 ">Limpiar</button>
                             </div>
                             <div>
                                 <legend className="font-bold text-xl mb-3 light:text-black">Genero</legend>
@@ -266,23 +266,23 @@ function AdvancedSearch({
                             </p>
                             <div className="flex gap-5 my-3">
                                 <div className="flex flex-col items-center gap-1">
-                                    <label htmlFor="include" className="font-bold text-sm text-neutral-400 light:text-neutral-600">Incluir usando</label>
+                                    <label htmlFor="include" className="font-bold text-sm text-neutral-400 light:text-neutral-600 dracula:text-dracula-yellow">Incluir usando</label>
                                     <select
                                         onChange={handleIncludeModeSelected}
                                         name="include"
                                         id="include"
-                                        className="bg-slate-600 dark:bg-neutral-700 light:bg-cyan-50 light:text-black rounded-lg p-1 w-full">
+                                        className="bg-slate-600 dark:bg-neutral-700 light:bg-cyan-50 light:text-black dracula:bg-dracula-500 rounded-lg p-1 w-full">
                                         <option value="AND">AND</option>
                                         <option value="OR">OR</option>
                                     </select>
                                 </div>
                                 <div className="flex flex-col items-center gap-1">
-                                    <label htmlFor="excluir" className="font-bold text-sm text-neutral-400 light:text-neutral-600">Excluir usando</label>
+                                    <label htmlFor="excluir" className="font-bold text-sm text-neutral-400 light:text-neutral-600 dracula:text-dracula-yellow">Excluir usando</label>
                                     <select
                                         onChange={handleExcludeModeSelected}
                                         name="excluir"
                                         id="excluir"
-                                        className="bg-slate-600 dark:bg-neutral-700 light:bg-cyan-50 light:text-black rounded-lg p-1 w-full">
+                                        className="bg-slate-600 dark:bg-neutral-700 light:bg-cyan-50 light:text-black dracula:bg-dracula-500 rounded-lg p-1 w-full">
                                         <option value="AND">AND</option>
                                         <option value="OR">OR</option>
                                     </select>
@@ -293,14 +293,14 @@ function AdvancedSearch({
                 </AnimatePresence>
             </div>
             <div className="relative z-9 flex flex-col">
-                <label htmlFor="contentRating" className="text-neutral-400 light:text-neutral-600">
+                <label htmlFor="contentRating" className="text-neutral-400 light:text-neutral-600 dracula:text-dracula-yellow">
                     Clasificacion
                     <strong className="text-xs text-green-500"> {contentRating.length > 0 && `+${contentRating.length}`}</strong>
                 </label>
                 <button
                     onClick={handContRatOpen}
                     id="contentRating"
-                    className="cursor-pointer flex items-center justify-between focus:outline focus:outline-slate-500 dark:focus:outline-cyan-300 light:focus:outline-black text-start bg-slate-800 dark:bg-neutral-700 light:bg-cyan-100 light:text-black rounded-sm p-1">
+                    className="cursor-pointer flex items-center justify-between focus:outline focus:outline-slate-500 dark:focus:outline-cyan-300 light:focus:outline-black text-start bg-slate-800 dark:bg-neutral-700 light:bg-cyan-100 light:text-black dracula:bg-dracula-700 rounded-sm p-1">
                     <span className="ml-1 line-clamp-1">{contentRating.length ? contentRating.join(", ") : 'Cualquiera...'}</span>
                     <FontAwesomeIcon icon={faHandPointDown} />
                 </button>
@@ -310,13 +310,13 @@ function AdvancedSearch({
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="absolute top-15 w-full bg-slate-800 dark:bg-neutral-800 light:bg-cyan-100 px-2 py-3"
+                            className="absolute top-15 w-full bg-slate-800 dark:bg-neutral-800 light:bg-cyan-100 dracula:bg-dracula-700 px-2 py-3"
                         >
                             <div>
                                 {contentRatingList.map((cr, index) => (
                                     <label key={index} className="flex gap-1 text-lg light:text-black">
                                         <input
-                                            className="w-4 accent-blue-300 light:accent-cyan-300 dark:dark:accent-cyan-300"
+                                            className="w-4 accent-blue-300 light:accent-cyan-300 dark:dark:accent-cyan-300 dracula:accent-dracula-purple"
                                             type="checkbox"
                                             value={cr}
                                             onChange={handleContentRatChange}
@@ -331,14 +331,14 @@ function AdvancedSearch({
                 </AnimatePresence>
             </div>
             <div className="relative z-9 flex flex-col">
-                <label htmlFor="demog" className="text-neutral-400 light:text-neutral-600">
+                <label htmlFor="demog" className="text-neutral-400 light:text-neutral-600 dracula:text-dracula-yellow">
                     Demographic
                     <strong className="text-green-500 text-xs"> {demographic.length > 0 && `+${demographic.length}`}</strong>
                 </label>
                 <button
                     onClick={handleDemograpOpen}
                     id="demog"
-                    className="cursor-pointer flex items-center justify-between focus:outline focus:outline-slate-500 dark:focus:outline-cyan-300 light:focus:outline-black text-start bg-slate-800 dark:bg-neutral-700 light:bg-cyan-100 light:text-black rounded-sm p-1">
+                    className="cursor-pointer flex items-center justify-between focus:outline focus:outline-slate-500 dark:focus:outline-cyan-300 light:focus:outline-black text-start bg-slate-800 dark:bg-neutral-700 light:bg-cyan-100 light:text-black dracula:bg-dracula-700 rounded-sm p-1">
                     <span className="ml-1 line-clamp-1">{demographic.length ? demographic.join(", ") : 'Cualquera...'}</span>
                     <FontAwesomeIcon icon={faHandPointDown} />
                 </button>
@@ -348,13 +348,13 @@ function AdvancedSearch({
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="absolute top-15 w-full bg-slate-800 dark:bg-neutral-800 light:bg-cyan-100 px-2 py-3"
+                            className="absolute top-15 w-full bg-slate-800 dark:bg-neutral-800 light:bg-cyan-100 dracula:bg-dracula-700 px-2 py-3"
                         >
                             <div>
                                 {demographicList.map((dem, index) => (
                                     <label htmlFor={dem} key={index} className="flex gap-1 text-lg light:text-black">
                                         <input
-                                            className="w-4 accent-blue-300 light:accent-cyan-300 dark:dark:accent-cyan-300"
+                                            className="w-4 accent-blue-300 light:accent-cyan-300 dark:dark:accent-cyan-300 dracula:accent-dracula-purple"
                                             type="checkbox"
                                             value={dem}
                                             id={dem}
@@ -370,14 +370,14 @@ function AdvancedSearch({
                 </AnimatePresence>
             </div>
             <div className="relative z-9 flex flex-col">
-                <label htmlFor="statLabel" className="text-neutral-400 light:text-neutral-600">
+                <label htmlFor="statLabel" className="text-neutral-400 light:text-neutral-600 dracula:text-dracula-yellow">
                     Estado
                     <strong className="text-xs text-green-500"> {status.length > 0 && `+${status.length}`}</strong>
                 </label>
                 <button
                     id="statLabel"
                     onClick={handleStatusOpen}
-                    className="cursor-pointer flex items-center justify-between focus:outline focus:outline-slate-500 dark:focus:outline-cyan-300 light:focus:outline-black text-start bg-slate-800 dark:bg-neutral-700 light:bg-cyan-100 light:text-black rounded-sm p-1">
+                    className="cursor-pointer flex items-center justify-between focus:outline focus:outline-slate-500 dark:focus:outline-cyan-300 light:focus:outline-black text-start bg-slate-800 dark:bg-neutral-700 light:bg-cyan-100 light:text-black dracula:bg-dracula-700 rounded-sm p-1">
                     <span className="ml-1 line-clamp-1">{status.length ? status.join(", ") : 'Cualquera...'}</span>
                     <FontAwesomeIcon icon={faHandPointDown} />
                 </button>
@@ -386,12 +386,12 @@ function AdvancedSearch({
                         <motion.div initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="absolute top-15 w-full bg-slate-800 dark:bg-neutral-800 light:bg-cyan-100 px-2 py-3"
+                            className="absolute top-15 w-full bg-slate-800 dark:bg-neutral-800 light:bg-cyan-100 dracula:bg-dracula-700 px-2 py-3"
                         >
                             {statusList.map((stat, index) => (
                                 <label htmlFor={stat} key={index} className="flex gap-1 text-lg light:text-black">
                                     <input
-                                        className="w-4 accent-blue-300 light:accent-cyan-300 dark:dark:accent-cyan-300"
+                                        className="w-4 accent-blue-300 light:accent-cyan-300 dark:dark:accent-cyan-300 dracula:accent-dracula-purple"
                                         type="checkbox"
                                         value={stat}
                                         id={stat}

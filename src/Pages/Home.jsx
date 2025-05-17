@@ -64,7 +64,7 @@ function Home() {
     return (
         <div className="xl:flex md:block w-full mx-auto">
             <aside className="flex-1 mb-3">
-                <div className="xl:hidden lg:flex justify-center items-center light:text-black rounded-t-xl mx-auto bg-slate-800 dark:bg-neutral-800 light:bg-amber-100 w-[900px] text-xl p-1">
+                <div className="xl:hidden lg:flex justify-center items-center light:text-black rounded-t-xl mx-auto bg-slate-800 dark:bg-neutral-800 dracula:bg-dracula-700 light:bg-amber-100 w-[900px] text-xl p-1">
                     <motion.button
                         onClick={handleMenu}
                         className="font-bold w-full flex items-center justify-center cursor-pointer"
@@ -73,18 +73,18 @@ function Home() {
 
                     >
                         {menu ? (
-                            <FontAwesomeIcon icon={faChevronUp} className="pl-2 pt-1" />
+                            <FontAwesomeIcon icon={faChevronUp} className="pl-2 pt-1 dracula:text-dracula-yellow" />
                         ) : (
-                            <FontAwesomeIcon icon={faChevronDown} className="pl-2" />
+                            <FontAwesomeIcon icon={faChevronDown} className="pl-2 dracula:text-dracula-yellow" />
                         )}
                     </motion.button>
                 </div>
                 <AnimatePresence>
                     {menu && (
                         <motion.div
-                            initial={{ scaleY: 0, originY: 0 }}
-                            animate={{ scaleY: 1 }}
-                            exit={{ scaleY: 0 }}
+                            initial={{ height: 0, scaleY: 0, originY: 0 }}
+                            animate={{ height: "auto", scaleY: 1 }}
+                            exit={{ height: 0, scaleY: 0 }}
                             transition={{ duration: 0.2 }}
                             exitTransition={{ duration: 0.2 }}
                         >
@@ -93,7 +93,7 @@ function Home() {
                     )}
                 </AnimatePresence>
             </aside>
-            <motion.div layout className='3xl:max-w-[1200px] 2xl:max-w-[1000px] xl:max-w-[850px] lg:max-w-[1000px] md:max-w-[700px] mx-auto px-4 '>
+            <motion.div className='3xl:max-w-[1200px] 2xl:max-w-[1000px] xl:max-w-[850px] lg:max-w-[1000px] md:max-w-[700px] mx-auto px-4 '>
                 <h1 className='font-medium mb-3 md:text-2xl 2xl:text-3xl light:text-black selection:bg-cyan-300'>Nuevo Titulos Populares</h1>
                 <Carousel mangas={mangas} />
                 <div className="flex items-center justify-between mt-15 mb-4">

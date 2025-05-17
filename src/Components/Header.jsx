@@ -40,7 +40,7 @@ function Header() {
 
         const htmlElement = document.querySelector('html');
 
-        htmlElement.classList.remove('dark', 'light', 'pink')
+        htmlElement.classList.remove('dark', 'light', 'pink', 'dracula')
 
         if (theme === 'light') {
             htmlElement.classList.add('light');
@@ -48,6 +48,9 @@ function Header() {
             htmlElement.classList.add('dark');
         } else if (theme === 'pink') {
             htmlElement.classList.add('pink');
+        }
+        else if (theme === 'dracula') {
+            htmlElement.classList.add('dracula');
         }
 
         localStorage.setItem('theme', theme);
@@ -93,10 +96,10 @@ function Header() {
     }, [userModalOpen, SettingModalOpen])
 
     return (
-        <div className='fixed w-full top-0 z-99 pb-2 bg-slate-800 dark:bg-neutral-800 light:bg-cyan-100'>
+        <div className='fixed w-full top-0 z-99 pb-2 bg-slate-800 dark:bg-neutral-800 light:bg-cyan-100 dracula:bg-dracula-700'>
             <AnimatePresence>
                 {themesOpen && (
-                    <ThemeModal setThemesOpen={setThemesOpen} setTheme={setTheme} theme={theme}/>
+                    <ThemeModal setThemesOpen={setThemesOpen} setTheme={setTheme} theme={theme} />
                 )}
             </AnimatePresence>
             <AnimatePresence>
@@ -118,7 +121,7 @@ function Header() {
                 <Link to={'/'}>
                     <div className='flex pl-5 items-center'>
                         <img src="/foxIcon2.svg" alt="Logo" className='w-10' />
-                        <h1 className='text-4xl font-bold light:text-black'>MangaFox</h1>
+                        <h1 className='text-4xl font-bold light:text-black '>MangaFox</h1>
                     </div>
                 </Link>
                 <div className="flex justify-center grow">
@@ -126,11 +129,11 @@ function Header() {
                 </div>
                 <div className='flex justify-end gap-5 pr-5'>
                     <div className='flex relative'>
-                        <button onClick={handleUserModal} className='flex justify-center cursor-pointer items-center text-center rounded-full bg-gray-900 light:bg-cyan-50 w-10 dark:bg-cyan-300 dark:text-black dark:border-black dark:border-2 light:hover:border-black hover:border-2'>
+                        <button onClick={handleUserModal} className='flex justify-center cursor-pointer items-center text-center rounded-full bg-gray-900 light:bg-cyan-50 w-10 dark:bg-cyan-300 dark:text-black dark:border-black dark:border-2 light:hover:border-black hover:border-2 dracula:hover:border-dracula-500 dracula:bg-dracula-800 dracula:text-dracula-purple'>
                             <motion.div
                                 className='flex'
                                 whileTap={{ scale: .5 }}
-                                whileHover={{scale: .9}}
+                                whileHover={{ scale: .9 }}
                             >
                                 <FontAwesomeIcon icon={faUser} className='text-2xl light:text-black' />
                             </motion.div>
@@ -150,7 +153,7 @@ function Header() {
                         </button>
                     </div>
                     <div className='flex'>
-                        <button onClick={handleTheme} className='z-99 flex justify-center cursor-pointer items-center text-center rounded-full bg-gray-900 light:bg-cyan-50 w-10 dark:bg-cyan-300 dark:text-black dark:border-black dark:border-2 light:hover:border-black hover:border-2'>
+                        <button onClick={handleTheme} className='z-99 flex justify-center cursor-pointer items-center text-center rounded-full bg-gray-900 light:bg-cyan-50 w-10 dark:bg-cyan-300 dark:text-black dark:border-black dark:border-2 light:hover:border-black dracula:hover:border-dracula-500 hover:border-2 dracula:bg-dracula-800 dracula:text-dracula-purple'>
                             <motion.div
                                 key={theme} // Se asegura de que la animación ocurra al cambiar el ícono
                                 initial={{ opacity: 0, scale: 0.5 }}  // Inicializa con opacidad 0 y escala 0.5
@@ -158,7 +161,7 @@ function Header() {
                                 exit={{ opacity: 0, scale: 0.5 }}     // Vuelve a escala 0.5 y opacidad 0 al desaparecer
                                 transition={{ duration: 0.5 }}
                                 className='flex justify-center items-center'
-                                whileHover={{scale: .9}}
+                                whileHover={{ scale: .9 }}
                             >
                                 {theme === 'light' ?
                                     (
@@ -172,11 +175,11 @@ function Header() {
                         </button>
                     </div>
                     <div className='flex relative'>
-                        <button onClick={handleSettingModal} className='flex justify-center cursor-pointer  items-center text-center rounded-full bg-gray-900 light:bg-cyan-50 w-10 dark:bg-cyan-300 dark:text-black dark:border-black dark:border-2 light:hover:border-black hover:border-2'>
+                        <button onClick={handleSettingModal} className='flex justify-center cursor-pointer  items-center text-center rounded-full bg-gray-900 light:bg-cyan-50 w-10 dark:bg-cyan-300 dark:text-black dark:border-black dark:border-2 light:hover:border-black hover:border-2 dracula:hover:border-dracula-500 dracula:bg-dracula-800 dracula:text-dracula-purple'>
                             <motion.div
                                 className='flex'
                                 whileTap={{ rotate: 360 }}
-                                whileHover={{scale: .9}}
+                                whileHover={{ scale: .9 }}
                             >
                                 <FontAwesomeIcon icon={faGear} className='text-2xl light:text-black' />
                             </motion.div>

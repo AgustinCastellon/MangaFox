@@ -7,6 +7,8 @@ function ThemeModal({ setThemesOpen, setTheme, theme }) {
 
     const handleThemeSelected = (e) => {
         setTheme(e.target.value)
+
+        console.log(theme)
     }
 
     return (
@@ -18,7 +20,7 @@ function ThemeModal({ setThemesOpen, setTheme, theme }) {
                 exit={{ opacity: 0 }}
             />
             <motion.div
-                className="absolute z-999 right-6 top-22 bg-slate-950 light:bg-amber-100 light:text-black light:border-cyan-200 dark:bg-neutral-800 dark:border-cyan-400 border-y-2 px-10 py-5 rounded"
+                className="absolute z-999 right-6 top-22 bg-slate-950 light:bg-amber-100 light:text-black light:border-cyan-200 dark:bg-neutral-800 dark:border-cyan-400 dracula:bg-dracula-700 dracula:border-dracula-purple border-y-2 px-10 py-5 rounded"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0 }}
@@ -26,7 +28,7 @@ function ThemeModal({ setThemesOpen, setTheme, theme }) {
                 <div className="relative w-full flex justify-end">
                     <button
                         onClick={() => setThemesOpen(false)}
-                        className="absolute -top-4 -right-8 flex justify-end cursor-pointer items-center text-center rounded-full py-1 px-2 light:hover:bg-amber-50 dark:hover:bg-neutral-700 hover:bg-slate-700"
+                        className="absolute -top-4 -right-8 flex justify-end cursor-pointer items-center text-center rounded-full py-1 px-2 light:hover:bg-amber-50 dark:hover:bg-neutral-700 hover:bg-slate-700 dracula:hover:bg-dracula-600"
                     >
                         <FontAwesomeIcon icon={faClose} className="text-2xl light:text-black" />
                     </button>
@@ -45,7 +47,7 @@ function ThemeModal({ setThemesOpen, setTheme, theme }) {
                         name="theme"
                         checked={theme == "dark"}
                         onChange={handleThemeSelected}
-                        className="w-4 accent-blue-300 light:accent-cyan-300 dark:dark:accent-cyan-300"
+                        className="w-4 accent-blue-300 light:accent-cyan-300 dark:accent-cyan-300"
                     />
                     <label htmlFor="oscuro">Modo Oscuro</label>
                 </div>
@@ -75,6 +77,18 @@ function ThemeModal({ setThemesOpen, setTheme, theme }) {
                 </div>
                 <div className="flex gap-1 ">
                     <input
+                        id="dracula"
+                        className="w-4 accent-blue-300 light:accent-cyan-300 dracula:accent-dracula-purple"
+                        type="radio"
+                        name="theme"
+                        value={'dracula'}
+                        onChange={handleThemeSelected}
+                        checked={theme == "dracula"}
+                    />
+                    <label htmlFor="dracula">Dracula</label>
+                </div>
+                <div className="flex gap-1 ">
+                    <input
                         id="pink"
                         className="w-4 accent-blue-300 light:accent-cyan-300"
                         type="radio"
@@ -82,16 +96,6 @@ function ThemeModal({ setThemesOpen, setTheme, theme }) {
                         disabled
                     />
                     <label htmlFor="pink">Pink <span className="text-xs self-center">(proximamente)</span></label>
-                </div>
-                <div className="flex gap-1 ">
-                    <input
-                        id="dracula"
-                        className="w-4 accent-blue-300 light:accent-cyan-300"
-                        type="radio"
-                        name="theme"
-                        disabled
-                    />
-                    <label htmlFor="dracula">Dracula <span className="text-xs self-center">(proximamente)</span></label>
                 </div>
             </motion.div>
         </div>

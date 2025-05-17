@@ -32,13 +32,13 @@ function ModalMangaCard({ manga, position, listPosition }) {
                 </div>
                 <div className="flex absolute justify-center w-full 2xl:bottom-2 lg:bottom-5 gap-1 px-2 ">
                     <Link to={`/manga/${manga.id}`} className="" >
-                        <button className="flex justify-center items-center bg-gray-700 light:bg-cyan-100 light:text-black dark:bg-cyan-300 dark:hover:bg-cyan-200 dark:text-black light:hover:bg-cyan-50 px-3 py-1 rounded-l-md text-white cursor-pointer hover:bg-gray-500">
+                        <button className="flex justify-center items-center bg-gray-700 light:bg-cyan-100 light:text-black dark:bg-cyan-300 dark:hover:bg-cyan-200 dark:text-black light:hover:bg-cyan-50 dracula:bg-dracula-500 dracula:hover:bg-dracula-400 px-3 py-1 rounded-l-md text-white cursor-pointer hover:bg-gray-500">
                             <FontAwesomeIcon icon={faBookOpen} className="text-xl" />
                             <span className="pl-2">Ver manga</span> 
                         </button>
                     </Link>
                     <Link to={""} className="" >
-                        <button className="flex justify-center h-full items-center bg-gray-700 light:bg-cyan-100 light:text-black dark:bg-cyan-300 dark:hover:bg-cyan-200 dark:text-black light:hover:bg-cyan-50 px-3 py-1 rounded-r-md text-white cursor-pointer hover:bg-gray-500">
+                        <button className="flex justify-center h-full items-center bg-gray-700 light:bg-cyan-100 light:text-black dark:bg-cyan-300 dark:hover:bg-cyan-200 dark:text-black light:hover:bg-cyan-50 dracula:bg-dracula-500 dracula:hover:bg-dracula-400 px-3 py-1 rounded-r-md text-white cursor-pointer hover:bg-gray-500">
                             <FontAwesomeIcon icon={faPlus} className="text-xl" />
                         </button>
                     </Link>
